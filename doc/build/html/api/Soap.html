@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Module Soap &mdash;
+PyWPS 3.2.0 documentation</title>
+<link rel="stylesheet" href="../_static/default.css"
+	type="text/css" />
+<link rel="stylesheet" href="../_static/pygments.css"
+	type="text/css" />
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script type="text/javascript" src="../_static/jquery.js"></script>
+<script type="text/javascript" src="../_static/underscore.js"></script>
+<script type="text/javascript" src="../_static/doctools.js"></script>
+<link rel="top" title="PyWPS 3.2.0 documentation" href="../index.html" />
+<link rel="up" title="PyWPS API"
+	href="index.html" />
+<link rel="next" title="Template"
+	href="Template.html" />
+<link rel="prev" title="Module InAndOutputs"
+	href="Process/InAndOutputs.html" /> 
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../genindex.html" title="General Index"accesskey="I">index</a></li>
+	<li class="right" >
+	<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="Template.html" title="Template"accesskey="N">next</a> |</li>
+	<li class="right" >
+	<a href="Process/InAndOutputs.html" title="Module InAndOutputs"accesskey="P">previous</a> |</li>
+	<li><a href="../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="index.html" accesskey="U">PyWPS  API</a>
+&raquo;</li> 
+</ul>
+</div>  
+
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+  <div class="section" id="module-pywps.Soap">
+<span id="module-soap"></span><h1>Module Soap<a class="headerlink" href="#module-pywps.Soap" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="soap">
+<h2>SOAP<a class="headerlink" href="#soap" title="Permalink to this headline">¶</a></h2>
+<p>SOAP wrapper</p>
+<dl class="class">
+<dt id="pywps.Soap.SOAP">
+<em class="property">class </em><tt class="descclassname">pywps.Soap.</tt><tt class="descname">SOAP</tt><big>(</big><em>document=None</em><big>)</big><a class="headerlink" href="#pywps.Soap.SOAP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Soap wrapper, used for parsing requests, which are in Soap envelope
+and creating Soap responses from normal XMLs.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This class is very primitive, it does not support advanced
+Soap features, ralike authorization and so on.</p>
+</div>
+<dl class="method">
+<dt id="pywps.Soap.SOAP.getResponse">
+<tt class="descname">getResponse</tt><big>(</big><em>document</em>, <em>soapVersion</em>, <em>isSoapExecute</em>, <em>isPromoteStatus</em><big>)</big><a class="headerlink" href="#pywps.Soap.SOAP.getResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrap document into soap envelope</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Soap.SOAP.getWPSContent">
+<tt class="descname">getWPSContent</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Soap.SOAP.getWPSContent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the specific WPS XML content of inside the SOAP request. The Element position may change if there is a SOAP header or if is was sent as a message inside the Body content
+The script will check for a standard WPS request or a <a href="#id1"><span class="problematic" id="id2">ExecuteProcess_</span></a> one</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pywps.Soap.doc_order_iter">
+<tt class="descclassname">pywps.Soap.</tt><tt class="descname">doc_order_iter</tt><big>(</big><em>node</em><big>)</big><a class="headerlink" href="#pywps.Soap.doc_order_iter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterates over each node in document order,
+returning each in turn
+<a class="reference external" href="http://www.ibm.com/developerworks/library/x-tipgenr.html">http://www.ibm.com/developerworks/library/x-tipgenr.html</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pywps.Soap.flagRemover">
+<tt class="descclassname">pywps.Soap.</tt><tt class="descname">flagRemover</tt><big>(</big><em>dummy</em>, <em>strXML</em><big>)</big><a class="headerlink" href="#pywps.Soap.flagRemover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove any char that is not allowed as Element name only (&#8221;:&#8221; | [A-Z] | &#8220;_&#8221; | [a-z]) allowed as start char. Same function as describeProcess2WSDL</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pywps.Soap.getCorrectInputID">
+<tt class="descclassname">pywps.Soap.</tt><tt class="descname">getCorrectInputID</tt><big>(</big><em>dummy</em>, <em>identifier</em><big>)</big><a class="headerlink" href="#pywps.Soap.getCorrectInputID" title="Permalink to this definition">¶</a></dt>
+<dd><p>XSLT function that converts the I/O identifier into a correct process I/O identifier. This is necessary
+to deal with cases like &lt;ows:Identifier&gt;&#8211;flag&lt;ows:Identifier&gt; that get converted into &lt;flag&gt; elements, in the WSDL description. 
+Function will do a reverse mapping. Simple flags like -r are problematic to map since they are only one char</p>
+</dd></dl>
+
+</div>
+</div>
+
+</div></div></div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../index.html"> <img
+	class="logo" src="../_static/pywps.png" alt="Logo" /> </a></p>
+<h3><a href="../index.html">Table Of
+Contents</a></h3>
+<ul>
+<li><a class="reference internal" href="#">Module Soap</a><ul>
+<li><a class="reference internal" href="#soap">SOAP</a></li>
+</ul>
+</li>
+</ul>
+
+<h4>Previous topic</h4>
+<p class="topless"><a href="Process/InAndOutputs.html"
+	title="previous chapter">Module InAndOutputs</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="Template.html"
+	title="next chapter">Template</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a href="../_sources/api/Soap.txt"
+		rel="nofollow">Show Source</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form class="search" action="../search.html" method="get">
+<input type="text" name="q" size="18" /> <input type="submit"
+	value="Go" /> <input type="hidden" name="check_keywords"
+	value="yes" /> <input type="hidden" name="area" value="default" /></form>
+<p class="searchtip" style="font-size: 90%">Enter search terms
+or a module, class or function name.</p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script></div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../genindex.html" title="General Index">index</a></li>
+	<li class="right" >
+	<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="Template.html" title="Template">next</a> |</li>
+	<li class="right" >
+	<a href="Process/InAndOutputs.html" title="Module InAndOutputs">previous</a> |</li>
+	<li><a href="../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="index.html" >PyWPS  API</a>
+&raquo;</li> 
+</ul>
+</div>
+<div class="footer"> &copy; Copyright 2010, Jachym Cepicky. Created using <a
+	href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.</div>
+</body>
+</html>

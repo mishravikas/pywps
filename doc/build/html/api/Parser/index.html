@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Module Parser &mdash;
+PyWPS 3.2.0 documentation</title>
+<link rel="stylesheet" href="../../_static/default.css"
+	type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css"
+	type="text/css" />
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script type="text/javascript" src="../../_static/jquery.js"></script>
+<script type="text/javascript" src="../../_static/underscore.js"></script>
+<script type="text/javascript" src="../../_static/doctools.js"></script>
+<link rel="top" title="PyWPS 3.2.0 documentation" href="../../index.html" />
+<link rel="up" title="PyWPS API"
+	href="../index.html" />
+<link rel="next" title="Module GetCapabilities"
+	href="GetCapabilities.html" />
+<link rel="prev" title="Module GRASS"
+	href="../Grass.html" /> 
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../../genindex.html" title="General Index"accesskey="I">index</a></li>
+	<li class="right" >
+	<a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="GetCapabilities.html" title="Module GetCapabilities"accesskey="N">next</a> |</li>
+	<li class="right" >
+	<a href="../Grass.html" title="Module GRASS"accesskey="P">previous</a> |</li>
+	<li><a href="../../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="../index.html" accesskey="U">PyWPS  API</a>
+&raquo;</li> 
+</ul>
+</div>  
+
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+  <div class="section" id="module-parser">
+<h1>Module Parser<a class="headerlink" href="#module-parser" title="Permalink to this headline">¶</a></h1>
+<p>Parser classes used by parsing of OGC WPS Requests</p>
+<p>Particular request packages:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="GetCapabilities.html">Module GetCapabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="GetCapabilities.html#class-post">Class Post</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GetCapabilities.html#class-get">Class Get</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DescribeProcess.html">Module DescribeProcess</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DescribeProcess.html#class-post">Class Post</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DescribeProcess.html#class-get">Class Get</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Execute.html">Module Execute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Execute.html#class-post">Class Post</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Execute.html#class-get">Class Get</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>Module Parser<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-pywps.Parser"></span><p>Parser parses input parameters, send via HTTP Post or HTTP Get method. If
+send via HTTP Post, the input is usually XML file.</p>
+<p>Each class in the package is resposible for each type of the request.</p>
+<dl class="class">
+<dt id="pywps.Parser.Parser">
+<em class="property">class </em><tt class="descclassname">pywps.Parser.</tt><tt class="descname">Parser</tt><big>(</big><em>wps</em><big>)</big><a class="headerlink" href="#pywps.Parser.Parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parent class for all request parsers.</p>
+<dl class="attribute">
+<dt id="pywps.Parser.Parser.wps">
+<tt class="descname">wps</tt><a class="headerlink" href="#pywps.Parser.Parser.wps" title="Permalink to this definition">¶</a></dt>
+<dd><p>instace of <a class="reference internal" href="../index.html#pywps.Pywps" title="pywps.Pywps"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Pywps</span></tt></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Parser.Parser.isSoap">
+<tt class="descname">isSoap</tt><a class="headerlink" href="#pywps.Parser.Parser.isSoap" title="Permalink to this definition">¶</a></dt>
+<dd><p>indicates, whether the request is in Soap envelope or not</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Parser.Parser.inputs">
+<tt class="descname">inputs</tt><a class="headerlink" href="#pywps.Parser.Parser.inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>object, where results of parsing is stored</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pywps.Parser.Get">
+<span id="module-get"></span><h2>Module Get<a class="headerlink" href="#module-pywps.Parser.Get" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="get">
+<h3>Get<a class="headerlink" href="#get" title="Permalink to this headline">¶</a></h3>
+</div>
+<dl class="class">
+<dt id="pywps.Parser.Get.Get">
+<em class="property">class </em><tt class="descclassname">pywps.Parser.Get.</tt><tt class="descname">Get</tt><big>(</big><em>wps</em><big>)</big><a class="headerlink" href="#pywps.Parser.Get.Get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main Class for parsing HTTP GET request types</p>
+<dl class="method">
+<dt id="pywps.Parser.Get.Get.checkLanguage">
+<tt class="descname">checkLanguage</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Parser.Get.Get.checkLanguage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check optional language parameter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Parser.Get.Get.checkRequestType">
+<tt class="descname">checkRequestType</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Parser.Get.Get.checkRequestType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find requested request type and import given request parser.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Parser.Get.Get.checkService">
+<tt class="descname">checkService</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Parser.Get.Get.checkService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check mandatory service name parameter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Parser.Get.Get.checkVersion">
+<tt class="descname">checkVersion</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Parser.Get.Get.checkVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check mandatory version parameter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Parser.Get.Get.parse">
+<tt class="descname">parse</tt><big>(</big><em>queryString</em><big>)</big><a class="headerlink" href="#pywps.Parser.Get.Get.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse given string with parameters given in KVP encoding</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>queryString</strong> &#8211; string of parameters taken from URL in KVP encoding</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">parsed inputs object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pywps.Parser.Post">
+<span id="module-post"></span><h2>Module Post<a class="headerlink" href="#module-pywps.Parser.Post" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="post">
+<h3>Post<a class="headerlink" href="#post" title="Permalink to this headline">¶</a></h3>
+</div>
+<dl class="class">
+<dt id="pywps.Parser.Post.Post">
+<em class="property">class </em><tt class="descclassname">pywps.Parser.Post.</tt><tt class="descname">Post</tt><big>(</big><em>wps</em><big>)</big><a class="headerlink" href="#pywps.Parser.Post.Post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main class for parsing of HTTP POST request types</p>
+<dl class="attribute">
+<dt id="pywps.Parser.Post.Post.document">
+<tt class="descname">document</tt><a class="headerlink" href="#pywps.Parser.Post.Post.document" title="Permalink to this definition">¶</a></dt>
+<dd><p>DOM of input document</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Parser.Post.Post.requestParser">
+<tt class="descname">requestParser</tt><a class="headerlink" href="#pywps.Parser.Post.Post.requestParser" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="GetCapabilities.html#module-pywps.Parser.GetCapabilities" title="pywps.Parser.GetCapabilities"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Parser.GetCapabilities</span></tt></a>, <a class="reference internal" href="DescribeProcess.html#module-pywps.Parser.DescribeProcess" title="pywps.Parser.DescribeProcess"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Parser.DescribeProcess</span></tt></a> 
+or <a class="reference internal" href="Execute.html#module-pywps.Parser.Execute" title="pywps.Parser.Execute"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Parser.Execute</span></tt></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Parser.Post.Post.checkLanguage">
+<tt class="descname">checkLanguage</tt><big>(</big><em>node</em><big>)</big><a class="headerlink" href="#pywps.Parser.Post.Post.checkLanguage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check optional language parameter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Parser.Post.Post.checkRequestType">
+<tt class="descname">checkRequestType</tt><big>(</big><em>node</em><big>)</big><a class="headerlink" href="#pywps.Parser.Post.Post.checkRequestType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find requested request type and import given request parser.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Parser.Post.Post.checkService">
+<tt class="descname">checkService</tt><big>(</big><em>node</em><big>)</big><a class="headerlink" href="#pywps.Parser.Post.Post.checkService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check mandatory service name parameter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>node</strong> &#8211; <tt class="xref py py-class docutils literal"><span class="pre">xml.dom.Node</span></tt>, where to search</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Parser.Post.Post.checkVersion">
+<tt class="descname">checkVersion</tt><big>(</big><em>node</em><big>)</big><a class="headerlink" href="#pywps.Parser.Post.Post.checkVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check optional language parameter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Parser.Post.Post.getFirstChildNode">
+<tt class="descname">getFirstChildNode</tt><big>(</big><em>document</em><big>)</big><a class="headerlink" href="#pywps.Parser.Post.Post.getFirstChildNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find first usable child node of the document (no comments)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Parser.Post.Post.getMaxFileSize">
+<tt class="descname">getMaxFileSize</tt><big>(</big><em>maxFileSize</em><big>)</big><a class="headerlink" href="#pywps.Parser.Post.Post.getMaxFileSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert given filesize string to number of bytes.</p>
+<p>This is used mainly for the parsing of the value from the
+configuration file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Parser.Post.Post.isSoapFirstChild">
+<tt class="descname">isSoapFirstChild</tt><big>(</big><em>document</em><big>)</big><a class="headerlink" href="#pywps.Parser.Post.Post.isSoapFirstChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return first child of the document, if it is SOAP request,
+return first child of the body envelope</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Parser.Post.Post.parse">
+<tt class="descname">parse</tt><big>(</big><em>file</em><big>)</big><a class="headerlink" href="#pywps.Parser.Post.Post.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse parameters stored as XML file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file</strong> &#8211; input file object or class:<cite>java.io.BufferedReader</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">parsed input object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+</div></div></div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../../index.html"> <img
+	class="logo" src="../../_static/pywps.png" alt="Logo" /> </a></p>
+<h3><a href="../../index.html">Table Of
+Contents</a></h3>
+<ul>
+<li><a class="reference internal" href="#">Module Parser</a><ul>
+<li><a class="reference internal" href="#id1">Module Parser</a></li>
+<li><a class="reference internal" href="#module-pywps.Parser.Get">Module Get</a><ul>
+<li><a class="reference internal" href="#get">Get</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-pywps.Parser.Post">Module Post</a><ul>
+<li><a class="reference internal" href="#post">Post</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h4>Previous topic</h4>
+<p class="topless"><a href="../Grass.html"
+	title="previous chapter">Module GRASS</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="GetCapabilities.html"
+	title="next chapter">Module GetCapabilities</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a href="../../_sources/api/Parser/index.txt"
+		rel="nofollow">Show Source</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form class="search" action="../../search.html" method="get">
+<input type="text" name="q" size="18" /> <input type="submit"
+	value="Go" /> <input type="hidden" name="check_keywords"
+	value="yes" /> <input type="hidden" name="area" value="default" /></form>
+<p class="searchtip" style="font-size: 90%">Enter search terms
+or a module, class or function name.</p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script></div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../../genindex.html" title="General Index">index</a></li>
+	<li class="right" >
+	<a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="GetCapabilities.html" title="Module GetCapabilities">next</a> |</li>
+	<li class="right" >
+	<a href="../Grass.html" title="Module GRASS">previous</a> |</li>
+	<li><a href="../../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="../index.html" >PyWPS  API</a>
+&raquo;</li> 
+</ul>
+</div>
+<div class="footer"> &copy; Copyright 2010, Jachym Cepicky. Created using <a
+	href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.</div>
+</body>
+</html>

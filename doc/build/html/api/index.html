@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>PyWPS API &mdash;
+PyWPS 3.2.0 documentation</title>
+<link rel="stylesheet" href="../_static/default.css"
+	type="text/css" />
+<link rel="stylesheet" href="../_static/pygments.css"
+	type="text/css" />
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script type="text/javascript" src="../_static/jquery.js"></script>
+<script type="text/javascript" src="../_static/underscore.js"></script>
+<script type="text/javascript" src="../_static/doctools.js"></script>
+<link rel="top" title="PyWPS 3.2.0 documentation" href="../index.html" />
+<link rel="next" title="Module Exceptions"
+	href="Exceptions.html" />
+<link rel="prev" title="PyWPS JavaScript client"
+	href="../clients/javascript.html" /> 
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../genindex.html" title="General Index"accesskey="I">index</a></li>
+	<li class="right" >
+	<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="Exceptions.html" title="Module Exceptions"accesskey="N">next</a> |</li>
+	<li class="right" >
+	<a href="../clients/javascript.html" title="PyWPS JavaScript client"accesskey="P">previous</a> |</li>
+	<li><a href="../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li> 
+</ul>
+</div>  
+
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+  <div class="section" id="pywps-api">
+<h1>PyWPS  API<a class="headerlink" href="#pywps-api" title="Permalink to this headline">¶</a></h1>
+<p>The <cite>pywps</cite> package consists of several sub-packages and classes:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Exceptions.html">Module Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Grass.html">Module GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parser/index.html">Module Parser</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Parser/GetCapabilities.html">Module GetCapabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parser/DescribeProcess.html">Module DescribeProcess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parser/Execute.html">Module Execute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parser/index.html#id1">Module Parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parser/index.html#module-pywps.Parser.Get">Module Get</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parser/index.html#module-pywps.Parser.Post">Module Post</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Process/index.html">Module Process</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Process/Lang.html">Module Lang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Process/InAndOutputs.html">Module InAndOutputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Process/index.html#process">Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Process/index.html#class-status">Class  Status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Process/index.html#class-wpsprocess">Class WPSProcess</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Soap.html">Module Soap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Soap.html#soap">SOAP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Template.html">Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wps/index.html">Module Wps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Wps/GetCapabilities.html">WPS GetCapabilities request handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Wps/DescribeProcess.html">WPS DescribeProcess request handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Wps/Execute.html">WPS Execute request handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Wps/index.html#wps-request">Wps Request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Wps/index.html#class-request">Class Request</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="module-pywps">
+<span id="package-pywps"></span><h2>Package pywps<a class="headerlink" href="#module-pywps" title="Permalink to this headline">¶</a></h2>
+<p>This package contains classes necessary for input parsing OGC WPS requests,
+working with list of processes, executing them and redirecting OGC WPS
+responses back to client.</p>
+<p>example how to use this module:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">request</span><span class="o">=</span><span class="s">&quot;service=wps&amp;request=getcapabilities&quot;</span>
+
+<span class="n">wps</span> <span class="o">=</span> <span class="n">Pywps</span><span class="p">(</span><span class="n">pywps</span><span class="o">.</span><span class="n">METHOD_GET</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">wps</span><span class="o">.</span><span class="n">parserRequest</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">wps</span><span class="o">.</span><span class="n">performRequest</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">response</span><span class="p">:</span>
+        <span class="n">wps</span><span class="o">.</span><span class="n">printResponse</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="data">
+<dt id="pywps.METHOD_GET">
+<tt class="descclassname">pywps.</tt><tt class="descname">METHOD_GET</tt><a class="headerlink" href="#pywps.METHOD_GET" title="Permalink to this definition">¶</a></dt>
+<dd><p>String for HTTP GET method identification</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pywps.METHOD_POST">
+<tt class="descclassname">pywps.</tt><tt class="descname">METHOD_POST</tt><a class="headerlink" href="#pywps.METHOD_POST" title="Permalink to this definition">¶</a></dt>
+<dd><p>String for HTTP POST method identification</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pywps.OWS_NAMESPACE">
+<tt class="descclassname">pywps.</tt><tt class="descname">OWS_NAMESPACE</tt><a class="headerlink" href="#pywps.OWS_NAMESPACE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Namespace of OGC OWS 1.1. standard</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pywps.WPS_NAMESPACE">
+<tt class="descclassname">pywps.</tt><tt class="descname">WPS_NAMESPACE</tt><a class="headerlink" href="#pywps.WPS_NAMESPACE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Namespace of OGC OWS 1.0.0 standard</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pywps.XLINK_NAMESPACE">
+<tt class="descclassname">pywps.</tt><tt class="descname">XLINK_NAMESPACE</tt><a class="headerlink" href="#pywps.XLINK_NAMESPACE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Namespace of OGC OWS 1.0.0 standard</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pywps.PYWPS_INSTALL_DIR">
+<tt class="descclassname">pywps.</tt><tt class="descname">PYWPS_INSTALL_DIR</tt><a class="headerlink" href="#pywps.PYWPS_INSTALL_DIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Directory, where Pywps is installed</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pywps.DEFAULT_LANG">
+<tt class="descclassname">pywps.</tt><tt class="descname">DEFAULT_LANG</tt><a class="headerlink" href="#pywps.DEFAULT_LANG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default language for WPS instance</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pywps.DEFAULT_VERSION">
+<tt class="descclassname">pywps.</tt><tt class="descname">DEFAULT_VERSION</tt><a class="headerlink" href="#pywps.DEFAULT_VERSION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default version of WPS instance</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pywps.config">
+<tt class="descclassname">pywps.</tt><tt class="descname">config</tt><a class="headerlink" href="#pywps.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration file parser</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pywps.responsePrinter">
+<tt class="descclassname">pywps.</tt><tt class="descname">responsePrinter</tt><a class="headerlink" href="#pywps.responsePrinter" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">ResponsePrinter</span></tt> instance, which will print the resulting
+response for you.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pywps.Pywps">
+<em class="property">class </em><tt class="descclassname">pywps.</tt><tt class="descname">Pywps</tt><big>(</big><em>method='GET'</em>, <em>configFiles=None</em><big>)</big><a class="headerlink" href="#pywps.Pywps" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is main PyWPS Class, which parses the request, performs the
+desired operation and writes required response back.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>method</strong> (<a class="reference external" href="http://docs.python.org/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; Used HTTP method, which is either <a class="reference internal" href="#pywps.METHOD_POST" title="pywps.METHOD_POST"><tt class="xref py py-data docutils literal"><span class="pre">METHOD_POST</span></tt></a>
+or <a class="reference internal" href="#pywps.METHOD_GET" title="pywps.METHOD_GET"><tt class="xref py py-data docutils literal"><span class="pre">METHOD_GET</span></tt></a>:</li>
+<li><strong>configFiles</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a>) &#8211; List of configuration files. Ignore, if you want to use standard files location</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pywps.Pywps.method">
+<tt class="descname">method</tt><a class="headerlink" href="#pywps.Pywps.method" title="Permalink to this definition">¶</a></dt>
+<dd><p>METHOD_GET or METHOD_POST</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Pywps.parser">
+<tt class="descname">parser</tt><a class="headerlink" href="#pywps.Pywps.parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>WPS request parser</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Pywps.inputs">
+<tt class="descname">inputs</tt><a class="headerlink" href="#pywps.Pywps.inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parsed inputs object</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Pywps.request">
+<tt class="descname">request</tt><a class="headerlink" href="#pywps.Pywps.request" title="Permalink to this definition">¶</a></dt>
+<dd><p>GetCapabilities, DescribeProcess or Execute (response) object</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<tt class="descname">parser</tt></dt>
+<dd><p>GetCapabilities, DescribeProcess or Execute, POST or GET (parsing) object</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Pywps.languages">
+<tt class="descname">languages</tt><a class="headerlink" href="#pywps.Pywps.languages" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of supported languages</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Pywps.versions">
+<tt class="descname">versions</tt><a class="headerlink" href="#pywps.Pywps.versions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default supported versions</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Pywps.logFile">
+<tt class="descname">logFile</tt><a class="headerlink" href="#pywps.Pywps.logFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>File objects, where some logs are written to.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Use</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;hallo world&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="last">for any debugging information, you want to get</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+</div></div></div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../index.html"> <img
+	class="logo" src="../_static/pywps.png" alt="Logo" /> </a></p>
+<h3><a href="../index.html">Table Of
+Contents</a></h3>
+<ul>
+<li><a class="reference internal" href="#">PyWPS  API</a><ul>
+<li><a class="reference internal" href="#module-pywps">Package pywps</a></li>
+</ul>
+</li>
+</ul>
+
+<h4>Previous topic</h4>
+<p class="topless"><a href="../clients/javascript.html"
+	title="previous chapter">PyWPS JavaScript client</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="Exceptions.html"
+	title="next chapter">Module Exceptions</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a href="../_sources/api/index.txt"
+		rel="nofollow">Show Source</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form class="search" action="../search.html" method="get">
+<input type="text" name="q" size="18" /> <input type="submit"
+	value="Go" /> <input type="hidden" name="check_keywords"
+	value="yes" /> <input type="hidden" name="area" value="default" /></form>
+<p class="searchtip" style="font-size: 90%">Enter search terms
+or a module, class or function name.</p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script></div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../genindex.html" title="General Index">index</a></li>
+	<li class="right" >
+	<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="Exceptions.html" title="Module Exceptions">next</a> |</li>
+	<li class="right" >
+	<a href="../clients/javascript.html" title="PyWPS JavaScript client">previous</a> |</li>
+	<li><a href="../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li> 
+</ul>
+</div>
+<div class="footer"> &copy; Copyright 2010, Jachym Cepicky. Created using <a
+	href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.</div>
+</body>
+</html>

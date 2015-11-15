@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Template &mdash;
+PyWPS 3.2.0 documentation</title>
+<link rel="stylesheet" href="../_static/default.css"
+	type="text/css" />
+<link rel="stylesheet" href="../_static/pygments.css"
+	type="text/css" />
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script type="text/javascript" src="../_static/jquery.js"></script>
+<script type="text/javascript" src="../_static/underscore.js"></script>
+<script type="text/javascript" src="../_static/doctools.js"></script>
+<link rel="top" title="PyWPS 3.2.0 documentation" href="../index.html" />
+<link rel="up" title="PyWPS API"
+	href="index.html" />
+<link rel="next" title="Module Wps"
+	href="Wps/index.html" />
+<link rel="prev" title="Module Soap"
+	href="Soap.html" /> 
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../genindex.html" title="General Index"accesskey="I">index</a></li>
+	<li class="right" >
+	<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="Wps/index.html" title="Module Wps"accesskey="N">next</a> |</li>
+	<li class="right" >
+	<a href="Soap.html" title="Module Soap"accesskey="P">previous</a> |</li>
+	<li><a href="../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="index.html" accesskey="U">PyWPS  API</a>
+&raquo;</li> 
+</ul>
+</div>  
+
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+  <span class="target" id="module-pywps.Template"></span><div class="section" id="template">
+<h1>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h1>
+<p>PyWPS Templating system</p>
+<dl class="class">
+<dt id="pywps.Template.IfToken">
+<em class="property">class </em><tt class="descclassname">pywps.Template.</tt><tt class="descname">IfToken</tt><big>(</big><em>type=None</em><big>)</big><a class="headerlink" href="#pywps.Template.IfToken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Special token used for IF/ELSE constructions. This token contains
+childs for the whole IF block as well as ELSE block. It&#8217;s childs do
+have assigned <cite>ifOrElseChild</cite> attribute, which indicates, whether the
+child token belongs to IF block or the ELSE block.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Childs of this token should appear on the same level of
+nesting, as this token. So any child token with the same name will
+get the same value.</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="pywps.Template.LoopToken">
+<em class="property">class </em><tt class="descclassname">pywps.Template.</tt><tt class="descname">LoopToken</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#pywps.Template.LoopToken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Special token used for LOOPing constructions</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Childs of this token should appear on the same level of
+nesting, as this token. So any child token with the same name will
+get the same value.</p>
+</div>
+</dd></dl>
+
+<dl class="exception">
+<dt id="pywps.Template.TemplateError">
+<em class="property">exception </em><tt class="descclassname">pywps.Template.</tt><tt class="descname">TemplateError</tt><a class="headerlink" href="#pywps.Template.TemplateError" title="Permalink to this definition">¶</a></dt>
+<dd><p>General template exception</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pywps.Template.TemplateProcessor">
+<em class="property">class </em><tt class="descclassname">pywps.Template.</tt><tt class="descname">TemplateProcessor</tt><big>(</big><em>fileName=None</em>, <em>compile=True</em><big>)</big><a class="headerlink" href="#pywps.Template.TemplateProcessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Processor of the template class. This class is used for</p>
+<ul class="simple">
+<li>loading template from text file</li>
+<li>parsing (tokenizing) it to tokens object</li>
+<li>setting values for each token</li>
+<li>printing the result</li>
+</ul>
+<dl class="method">
+<dt id="pywps.Template.TemplateProcessor.getIncludedTokens">
+<tt class="descname">getIncludedTokens</tt><big>(</big><em>token</em><big>)</big><a class="headerlink" href="#pywps.Template.TemplateProcessor.getIncludedTokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return list of tokens, which are taken from the included file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; input token of type include</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of tokens</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Template.TemplateProcessor.getToken">
+<tt class="descname">getToken</tt><big>(</big><em>statement</em><big>)</big><a class="headerlink" href="#pywps.Template.TemplateProcessor.getToken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new token object, based on input text statement</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>statement</strong> (<a class="reference external" href="http://docs.python.org/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; some statement from the template</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">new token instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Template.TemplateProcessor.isCompiled">
+<tt class="descname">isCompiled</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Template.TemplateProcessor.isCompiled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check, if the template is compied &#8211; any <a href="#id1"><span class="problematic" id="id2">*</span></a>.tmplc file does exist</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Template.TemplateProcessor.isUpToDate">
+<tt class="descname">isUpToDate</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Template.TemplateProcessor.isUpToDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check, if the template is up-to-date, the compiled file is
+younger, than the original template file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Template.TemplateProcessor.readFromCompiled">
+<tt class="descname">readFromCompiled</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Template.TemplateProcessor.readFromCompiled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set self.tokens from existing compiled file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Template.TemplateProcessor.recompile">
+<tt class="descname">recompile</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Template.TemplateProcessor.recompile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set self.tokens from input text file and store them in compiled
+form for later usage.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Template.TemplateProcessor.set">
+<tt class="descname">set</tt><big>(</big><em>key</em>, <em>value</em>, <em>tokens=None</em>, <em>parent=None</em><big>)</big><a class="headerlink" href="#pywps.Template.TemplateProcessor.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set value of some token</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> (<a class="reference external" href="http://docs.python.org/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; key identificator</li>
+<li><strong>value</strong> (<em>mixed (string, list, boolean, object</em>) &#8211; the actual value of the token</li>
+<li><strong>tokens</strong> &#8211; list of tokens, where the search the right one,
+based on the token&#8217;s name</li>
+<li><strong>parent</strong> &#8211; expected parent token</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list of tokens (with value set to desired value)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Template.TemplateProcessor.tokenize">
+<tt class="descname">tokenize</tt><big>(</big><em>templateData</em><big>)</big><a class="headerlink" href="#pywps.Template.TemplateProcessor.tokenize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tokenize input text data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>templateData</strong> (<a class="reference external" href="http://docs.python.org/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; input text</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of tokens</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pywps.Template.Token">
+<em class="property">class </em><tt class="descclassname">pywps.Template.</tt><tt class="descname">Token</tt><big>(</big><em>type=None</em><big>)</big><a class="headerlink" href="#pywps.Template.Token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base Token class. Token is snipplet of input template. Template
+consits from list of tokens.</p>
+<dl class="method">
+<dt id="pywps.Template.Token.addChild">
+<tt class="descname">addChild</tt><big>(</big><em>childs</em><big>)</big><a class="headerlink" href="#pywps.Template.Token.addChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add child to this Token</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can submit also only one child to this method, it will
+be converted to list automatically.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>child</strong> (<em>[childs]</em>) &#8211; list of child tokens</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Template.Token.setParent">
+<tt class="descname">setParent</tt><big>(</big><em>parent</em><big>)</big><a class="headerlink" href="#pywps.Template.Token.setParent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set parent of this Token, assign it as child to other Token</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>parent</strong> (<em>Token</em>) &#8211; parent</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Template.Token.setValue">
+<tt class="descname">setValue</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#pywps.Template.Token.setValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set value for this token</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; any text or attribute, which will be assigned as
+value of this token</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pywps.Template.VarToken">
+<em class="property">class </em><tt class="descclassname">pywps.Template.</tt><tt class="descname">VarToken</tt><big>(</big><em>type=None</em><big>)</big><a class="headerlink" href="#pywps.Template.VarToken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Token used for VAR constructions</p>
+</dd></dl>
+
+</div>
+
+</div></div></div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../index.html"> <img
+	class="logo" src="../_static/pywps.png" alt="Logo" /> </a></p>
+<h4>Previous topic</h4>
+<p class="topless"><a href="Soap.html"
+	title="previous chapter">Module Soap</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="Wps/index.html"
+	title="next chapter">Module Wps</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a href="../_sources/api/Template.txt"
+		rel="nofollow">Show Source</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form class="search" action="../search.html" method="get">
+<input type="text" name="q" size="18" /> <input type="submit"
+	value="Go" /> <input type="hidden" name="check_keywords"
+	value="yes" /> <input type="hidden" name="area" value="default" /></form>
+<p class="searchtip" style="font-size: 90%">Enter search terms
+or a module, class or function name.</p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script></div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../genindex.html" title="General Index">index</a></li>
+	<li class="right" >
+	<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="Wps/index.html" title="Module Wps">next</a> |</li>
+	<li class="right" >
+	<a href="Soap.html" title="Module Soap">previous</a> |</li>
+	<li><a href="../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="index.html" >PyWPS  API</a>
+&raquo;</li> 
+</ul>
+</div>
+<div class="footer"> &copy; Copyright 2010, Jachym Cepicky. Created using <a
+	href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.</div>
+</body>
+</html>

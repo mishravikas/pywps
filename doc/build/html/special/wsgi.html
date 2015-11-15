@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>PyWPS and WSGI &mdash;
+PyWPS 3.2.0 documentation</title>
+<link rel="stylesheet" href="../_static/default.css"
+	type="text/css" />
+<link rel="stylesheet" href="../_static/pygments.css"
+	type="text/css" />
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script type="text/javascript" src="../_static/jquery.js"></script>
+<script type="text/javascript" src="../_static/underscore.js"></script>
+<script type="text/javascript" src="../_static/doctools.js"></script>
+<link rel="top" title="PyWPS 3.2.0 documentation" href="../index.html" />
+<link rel="up" title="Special PyWPS Topics"
+	href="index.html" />
+<link rel="next" title="PyWPS and Java"
+	href="java.html" />
+<link rel="prev" title="PyWPS and Mod Python"
+	href="mod_python.html" /> 
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../genindex.html" title="General Index"accesskey="I">index</a></li>
+	<li class="right" >
+	<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="java.html" title="PyWPS and Java"accesskey="N">next</a> |</li>
+	<li class="right" >
+	<a href="mod_python.html" title="PyWPS and Mod Python"accesskey="P">previous</a> |</li>
+	<li><a href="../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="index.html" accesskey="U">Special PyWPS Topics</a>
+&raquo;</li> 
+</ul>
+</div>  
+
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+  <div class="section" id="pywps-and-wsgi">
+<h1>PyWPS and WSGI<a class="headerlink" href="#pywps-and-wsgi" title="Permalink to this headline">¶</a></h1>
+<p>For more detailed information about WSGI, please visit their <cite>website &lt;http://wsgi.org/wsgi/&gt;_</cite>.
+In general WSGI is preferred over mod_python mode.</p>
+<ul>
+<li><p class="first">Install <cite>mod_wsgi</cite> for Apache server (if you are using it)</p>
+</li>
+<li><p class="first">Locate <cite>webservices/wsgi/wsgiwps.py</cite> which provides the WSGI interface</p>
+</li>
+<li><p class="first">Configure Apache server to something similar as:</p>
+<div class="highlight-python"><div class="highlight"><pre> SetEnv PYTHONPATH /usr/local/src/pywps/ # is not installed the &#39;clean&#39; way
+ SetEnv PYWPS_CFG /usr/local/src/pywpsworkdir/pywps.cfg
+ SetEnv PYWPS_PROCESSES /usr/local/src/pywpsworkdir/processes
+&lt;Directory /usr/local/src/pywps/&gt;
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+WSGIScriptAlias /wps /usr/local/src/pywps/webservices/wsgi/wpswsgi.py
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+
+</div></div></div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../index.html"> <img
+	class="logo" src="../_static/pywps.png" alt="Logo" /> </a></p>
+<h4>Previous topic</h4>
+<p class="topless"><a href="mod_python.html"
+	title="previous chapter">PyWPS and Mod Python</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="java.html"
+	title="next chapter">PyWPS and Java</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a href="../_sources/special/wsgi.txt"
+		rel="nofollow">Show Source</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form class="search" action="../search.html" method="get">
+<input type="text" name="q" size="18" /> <input type="submit"
+	value="Go" /> <input type="hidden" name="check_keywords"
+	value="yes" /> <input type="hidden" name="area" value="default" /></form>
+<p class="searchtip" style="font-size: 90%">Enter search terms
+or a module, class or function name.</p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script></div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../genindex.html" title="General Index">index</a></li>
+	<li class="right" >
+	<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="java.html" title="PyWPS and Java">next</a> |</li>
+	<li class="right" >
+	<a href="mod_python.html" title="PyWPS and Mod Python">previous</a> |</li>
+	<li><a href="../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="index.html" >Special PyWPS Topics</a>
+&raquo;</li> 
+</ul>
+</div>
+<div class="footer"> &copy; Copyright 2010, Jachym Cepicky. Created using <a
+	href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.</div>
+</body>
+</html>

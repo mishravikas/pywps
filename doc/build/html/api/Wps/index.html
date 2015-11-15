@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Module Wps &mdash;
+PyWPS 3.2.0 documentation</title>
+<link rel="stylesheet" href="../../_static/default.css"
+	type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css"
+	type="text/css" />
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script type="text/javascript" src="../../_static/jquery.js"></script>
+<script type="text/javascript" src="../../_static/underscore.js"></script>
+<script type="text/javascript" src="../../_static/doctools.js"></script>
+<link rel="top" title="PyWPS 3.2.0 documentation" href="../../index.html" />
+<link rel="up" title="PyWPS API"
+	href="../index.html" />
+<link rel="next" title="WPS GetCapabilities request handler"
+	href="GetCapabilities.html" />
+<link rel="prev" title="Template"
+	href="../Template.html" /> 
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../../genindex.html" title="General Index"accesskey="I">index</a></li>
+	<li class="right" >
+	<a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="GetCapabilities.html" title="WPS GetCapabilities request handler"accesskey="N">next</a> |</li>
+	<li class="right" >
+	<a href="../Template.html" title="Template"accesskey="P">previous</a> |</li>
+	<li><a href="../../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="../index.html" accesskey="U">PyWPS  API</a>
+&raquo;</li> 
+</ul>
+</div>  
+
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+  <div class="section" id="module-wps">
+<h1>Module Wps<a class="headerlink" href="#module-wps" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="GetCapabilities.html">WPS GetCapabilities request handler</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="GetCapabilities.html#class-getcapabilities">Class GetCapabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DescribeProcess.html">WPS DescribeProcess request handler</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DescribeProcess.html#class-describeprocess">Class DescribeProcess</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Execute.html">WPS Execute request handler</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Execute.html#class-execute">Class Execute</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<span class="target" id="module-pywps.Wps"></span><div class="section" id="wps-request">
+<h2>Wps Request<a class="headerlink" href="#wps-request" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="class-request">
+<h2>Class Request<a class="headerlink" href="#class-request" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pywps.Wps.Request">
+<em class="property">class </em><tt class="descclassname">pywps.Wps.</tt><tt class="descname">Request</tt><big>(</big><em>wps</em>, <em>processes=None</em><big>)</big><a class="headerlink" href="#pywps.Wps.Request" title="Permalink to this definition">¶</a></dt>
+<dd><p>WPS Request performing, and response formating</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param wps:</th><td class="field-body">instance of <tt class="xref py py-class docutils literal"><span class="pre">Pywps</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<dl class="docutils">
+<dt><a class="reference external" href="http://wiki.rsg.pml.ac.uk/pywps/Introduction">http://wiki.rsg.pml.ac.uk/pywps/Introduction</a></dt>
+<dd><dl class="first attribute">
+<dt id="pywps.Wps.Request.response">
+<tt class="descname">response</tt><a class="headerlink" href="#pywps.Wps.Request.response" title="Permalink to this definition">¶</a></dt>
+<dd><p>formated response output</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Request.wps">
+<tt class="descname">wps</tt><a class="headerlink" href="#pywps.Wps.Request.wps" title="Permalink to this definition">¶</a></dt>
+<dd><p>instance of <tt class="xref py py-class docutils literal"><span class="pre">pywps.PyWPS</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Request.templateFile">
+<tt class="descname">templateFile</tt><a class="headerlink" href="#pywps.Wps.Request.templateFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>name of the template file (based on WPS version and request type)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Request.processDir">
+<tt class="descname">processDir</tt><a class="headerlink" href="#pywps.Wps.Request.processDir" title="Permalink to this definition">¶</a></dt>
+<dd><p>temporary created directory, where the process is running</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Request.templateVersionDirectory">
+<tt class="descname">templateVersionDirectory</tt><a class="headerlink" href="#pywps.Wps.Request.templateVersionDirectory" title="Permalink to this definition">¶</a></dt>
+<dd><p>directory, where templates are stored (based on WPS version)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Request.precompile">
+<tt class="descname">precompile</tt><a class="headerlink" href="#pywps.Wps.Request.precompile" title="Permalink to this definition">¶</a></dt>
+<dd><p>indicates, if the template shuld be precompiled for later usage or
+not</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Request.stdOutClosed">
+<tt class="descname">stdOutClosed</tt><a class="headerlink" href="#pywps.Wps.Request.stdOutClosed" title="Permalink to this definition">¶</a></dt>
+<dd><p>indicates, if we can write to standard output or not (usualy it is
+opend, it is closed only while the process is running in
+assynchronous mode)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Request.templateProcessor">
+<tt class="descname">templateProcessor</tt><a class="headerlink" href="#pywps.Wps.Request.templateProcessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>instance of <a class="reference internal" href="../Template.html#pywps.Template.TemplateProcessor" title="pywps.Template.TemplateProcessor"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Template.TemplateProcessor</span></tt></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Request.processes">
+<tt class="descname">processes</tt><a class="headerlink" href="#pywps.Wps.Request.processes" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of instances of :<cite>class:`pywps.Process.WPSProcess</cite></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Request.processSources">
+<tt class="descname">processSources</tt><a class="headerlink" href="#pywps.Wps.Request.processSources" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of sources of processes</p>
+</dd></dl>
+
+<dl class="last attribute">
+<dt id="pywps.Wps.Request.contentType">
+<tt class="descname">contentType</tt><a class="headerlink" href="#pywps.Wps.Request.contentType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Response content type, text/xml usually</p>
+</dd></dl>
+
+</dd>
+</dl>
+<dl class="method">
+<dt id="pywps.Wps.Request.checkProcess">
+<tt class="descname">checkProcess</tt><big>(</big><em>identifiers</em><big>)</big><a class="headerlink" href="#pywps.Wps.Request.checkProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>check, if given identifiers are available as processes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Request.cleanEnv">
+<tt class="descname">cleanEnv</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Request.cleanEnv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean possible temporary files etc. created by this request
+type</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">this method is empty and should be redefined by particula
+instances</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Request.formatMetadata">
+<tt class="descname">formatMetadata</tt><big>(</big><em>process</em><big>)</big><a class="headerlink" href="#pywps.Wps.Request.formatMetadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create structure suitble for template form process.metadata</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>process</strong> &#8211; <a class="reference internal" href="../Process/index.html#module-pywps.Process" title="pywps.Process"><tt class="xref py py-attr docutils literal"><span class="pre">pywps.Process</span></tt></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">hash with formated metadata</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Request.getDataTypeReference">
+<tt class="descname">getDataTypeReference</tt><big>(</big><em>inoutput</em><big>)</big><a class="headerlink" href="#pywps.Wps.Request.getDataTypeReference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns data type reference according to W3C</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>inoutput</strong> &#8211; <a class="reference internal" href="../Process/InAndOutputs.html#pywps.Process.InAndOutputs.Input" title="pywps.Process.InAndOutputs.Input"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.Input</span></tt></a>
+or <a class="reference internal" href="../Process/InAndOutputs.html#pywps.Process.InAndOutputs.Output" title="pywps.Process.InAndOutputs.Output"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.Output</span></tt></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">url to w3.org</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Request.getProcess">
+<tt class="descname">getProcess</tt><big>(</big><em>identifier</em><big>)</big><a class="headerlink" href="#pywps.Wps.Request.getProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get single processes based on it&#8217;s identifier</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Request.getProcesses">
+<tt class="descname">getProcesses</tt><big>(</big><em>identifiers=None</em><big>)</big><a class="headerlink" href="#pywps.Wps.Request.getProcesses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list of processes identified by list of identifiers</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>identifiers</strong> &#8211; List of identifiers. Either list of strings, or &#8216;all&#8217;</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of process instances or none</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Request.initProcesses">
+<tt class="descname">initProcesses</tt><big>(</big><em>processes=None</em><big>)</big><a class="headerlink" href="#pywps.Wps.Request.initProcesses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize list of <a class="reference internal" href="#pywps.Wps.Request.processes" title="pywps.Wps.Request.processes"><tt class="xref py py-attr docutils literal"><span class="pre">processes</span></tt></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>processes</strong> (list of <a class="reference internal" href="../Process/index.html#pywps.Process.WPSProcess" title="pywps.Process.WPSProcess"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.WPSProcess</span></tt></a>, list of
+it&#8217;s instances, string with directory, where processes are
+located, ...) &#8211; processes input processes. If none, environment and default
+settings will be used.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+</div></div></div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../../index.html"> <img
+	class="logo" src="../../_static/pywps.png" alt="Logo" /> </a></p>
+<h3><a href="../../index.html">Table Of
+Contents</a></h3>
+<ul>
+<li><a class="reference internal" href="#">Module Wps</a><ul>
+<li><a class="reference internal" href="#wps-request">Wps Request</a></li>
+<li><a class="reference internal" href="#class-request">Class Request</a></li>
+</ul>
+</li>
+</ul>
+
+<h4>Previous topic</h4>
+<p class="topless"><a href="../Template.html"
+	title="previous chapter">Template</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="GetCapabilities.html"
+	title="next chapter">WPS GetCapabilities request handler</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a href="../../_sources/api/Wps/index.txt"
+		rel="nofollow">Show Source</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form class="search" action="../../search.html" method="get">
+<input type="text" name="q" size="18" /> <input type="submit"
+	value="Go" /> <input type="hidden" name="check_keywords"
+	value="yes" /> <input type="hidden" name="area" value="default" /></form>
+<p class="searchtip" style="font-size: 90%">Enter search terms
+or a module, class or function name.</p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script></div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../../genindex.html" title="General Index">index</a></li>
+	<li class="right" >
+	<a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="GetCapabilities.html" title="WPS GetCapabilities request handler">next</a> |</li>
+	<li class="right" >
+	<a href="../Template.html" title="Template">previous</a> |</li>
+	<li><a href="../../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="../index.html" >PyWPS  API</a>
+&raquo;</li> 
+</ul>
+</div>
+<div class="footer"> &copy; Copyright 2010, Jachym Cepicky. Created using <a
+	href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.</div>
+</body>
+</html>

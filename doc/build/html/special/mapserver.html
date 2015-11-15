@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>PyWPS and UMN MapServer &mdash;
+PyWPS 3.2.0 documentation</title>
+<link rel="stylesheet" href="../_static/default.css"
+	type="text/css" />
+<link rel="stylesheet" href="../_static/pygments.css"
+	type="text/css" />
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script type="text/javascript" src="../_static/jquery.js"></script>
+<script type="text/javascript" src="../_static/underscore.js"></script>
+<script type="text/javascript" src="../_static/doctools.js"></script>
+<link rel="top" title="PyWPS 3.2.0 documentation" href="../index.html" />
+<link rel="up" title="Special PyWPS Topics"
+	href="index.html" />
+<link rel="next" title="PyWPS and Mod Python"
+	href="mod_python.html" />
+<link rel="prev" title="PyWPS and GRASS GIS"
+	href="grass.html" /> 
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../genindex.html" title="General Index"accesskey="I">index</a></li>
+	<li class="right" >
+	<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="mod_python.html" title="PyWPS and Mod Python"accesskey="N">next</a> |</li>
+	<li class="right" >
+	<a href="grass.html" title="PyWPS and GRASS GIS"accesskey="P">previous</a> |</li>
+	<li><a href="../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="index.html" accesskey="U">Special PyWPS Topics</a>
+&raquo;</li> 
+</ul>
+</div>  
+
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+  <div class="section" id="pywps-and-umn-mapserver">
+<h1>PyWPS and UMN MapServer<a class="headerlink" href="#pywps-and-umn-mapserver" title="Permalink to this headline">¶</a></h1>
+<p>PyWPS can integrate <a class="reference external" href="http://mapserver.org">MapServer</a> to return results of ComplexData back
+to the client.</p>
+<p>The idea is as follows: if the client requires
+<a class="reference internal" href="../api/Process/InAndOutputs.html#pywps.Process.InAndOutputs.ComplexOutput" title="pywps.Process.InAndOutputs.ComplexOutput"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.ComplexOutput</span></tt></a> to be returned, <cite>as
+reference</cite>, usually, a direct link to the produced file is returned. But with
+MapServer, a WFS, WMS or WCS URL could be returned.</p>
+<p>The client can later parse the URL of the resulting <cite>ComplexValue</cite> file and
+e.g. instead of having a GeoTIFF file (result of the calculation), obtained
+from the WCS, it can request a PNG file via WMS.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>To support MapServer for ComplexOutputs in your PyWPS
+installation, the following packages have to be installed:</p>
+<blockquote>
+<div><ul class="simple">
+<li>python-mapscript</li>
+<li>python-gdal</li>
+<li>python-pyproj</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>When you are initializing a new process (see <em class="xref std std-ref">process-initialization</em>),
+you can set the <a class="reference internal" href="../api/Process/InAndOutputs.html#pywps.Process.InAndOutputs.ComplexOutput.useMapscript" title="pywps.Process.InAndOutputs.ComplexOutput.useMapscript"><tt class="xref py py-attr docutils literal"><span class="pre">pywps.Process.InAndOutputs.ComplexOutput.useMapscript</span></tt></a> attribute to <cite>True</cite> to get it run.
+Have a look at the <a class="reference internal" href="../api/Process/InAndOutputs.html#pywps.Process.InAndOutputs.ComplexOutput" title="pywps.Process.InAndOutputs.ComplexOutput"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.ComplexOutput</span></tt></a>
+documentation, also for other attributes, like projection or bbox (can be set
+automatically from georeferenced file). Required format
+(<a class="reference internal" href="../api/Process/InAndOutputs.html#pywps.Process.InAndOutputs.ComplexOutput.format" title="pywps.Process.InAndOutputs.ComplexOutput.format"><tt class="xref py py-attr docutils literal"><span class="pre">pywps.Process.InAndOutputs.ComplexOutput.format</span></tt></a> decides on the output
+service type (WCS for GeoTIFF and similar, WFS for xml or text, WMS for PNG, JPEG, GIF).:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">outputMap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">addComplexOutput</span><span class="p">(</span><span class="n">identifier</span> <span class="o">=</span> <span class="s">&quot;map&quot;</span><span class="p">,</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Resulting output map&quot;</span><span class="p">,</span>
+                <span class="n">formats</span> <span class="o">=</span> <span class="p">[</span>
+                        <span class="p">{</span><span class="s">&quot;mimeType&quot;</span><span class="p">:</span><span class="s">&quot;image/tiff&quot;</span><span class="p">},</span>
+                        <span class="p">{</span><span class="s">&quot;mimeType&quot;</span><span class="p">:</span><span class="s">&quot;image/png&quot;</span><span class="p">}</span>
+                <span class="p">],</span>
+                <span class="n">useMapscript</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+</div></div></div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../index.html"> <img
+	class="logo" src="../_static/pywps.png" alt="Logo" /> </a></p>
+<h3><a href="../index.html">Table Of
+Contents</a></h3>
+<ul>
+<li><a class="reference internal" href="#">PyWPS and UMN MapServer</a><ul>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+
+<h4>Previous topic</h4>
+<p class="topless"><a href="grass.html"
+	title="previous chapter">PyWPS and GRASS GIS</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="mod_python.html"
+	title="next chapter">PyWPS and Mod Python</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a href="../_sources/special/mapserver.txt"
+		rel="nofollow">Show Source</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form class="search" action="../search.html" method="get">
+<input type="text" name="q" size="18" /> <input type="submit"
+	value="Go" /> <input type="hidden" name="check_keywords"
+	value="yes" /> <input type="hidden" name="area" value="default" /></form>
+<p class="searchtip" style="font-size: 90%">Enter search terms
+or a module, class or function name.</p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script></div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../genindex.html" title="General Index">index</a></li>
+	<li class="right" >
+	<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="mod_python.html" title="PyWPS and Mod Python">next</a> |</li>
+	<li class="right" >
+	<a href="grass.html" title="PyWPS and GRASS GIS">previous</a> |</li>
+	<li><a href="../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="index.html" >Special PyWPS Topics</a>
+&raquo;</li> 
+</ul>
+</div>
+<div class="footer"> &copy; Copyright 2010, Jachym Cepicky. Created using <a
+	href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.</div>
+</body>
+</html>

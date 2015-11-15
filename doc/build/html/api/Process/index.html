@@ -1,0 +1,770 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Module Process &mdash;
+PyWPS 3.2.0 documentation</title>
+<link rel="stylesheet" href="../../_static/default.css"
+	type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css"
+	type="text/css" />
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script type="text/javascript" src="../../_static/jquery.js"></script>
+<script type="text/javascript" src="../../_static/underscore.js"></script>
+<script type="text/javascript" src="../../_static/doctools.js"></script>
+<link rel="top" title="PyWPS 3.2.0 documentation" href="../../index.html" />
+<link rel="up" title="PyWPS API"
+	href="../index.html" />
+<link rel="next" title="Module Lang"
+	href="Lang.html" />
+<link rel="prev" title="Module Execute"
+	href="../Parser/Execute.html" /> 
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../../genindex.html" title="General Index"accesskey="I">index</a></li>
+	<li class="right" >
+	<a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="Lang.html" title="Module Lang"accesskey="N">next</a> |</li>
+	<li class="right" >
+	<a href="../Parser/Execute.html" title="Module Execute"accesskey="P">previous</a> |</li>
+	<li><a href="../../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="../index.html" accesskey="U">PyWPS  API</a>
+&raquo;</li> 
+</ul>
+</div>  
+
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+  <div class="section" id="module-process">
+<h1>Module Process<a class="headerlink" href="#module-process" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Lang.html">Module Lang</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Lang.html#class-lang">Class Lang</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="InAndOutputs.html">Module InAndOutputs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="InAndOutputs.html#class-input">Class Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="InAndOutputs.html#class-literalinput">Class LiteralInput</a></li>
+<li class="toctree-l2"><a class="reference internal" href="InAndOutputs.html#class-complexinput">Class ComplexInput</a></li>
+<li class="toctree-l2"><a class="reference internal" href="InAndOutputs.html#class-boundingboxinput">Class BoundingBoxInput</a></li>
+<li class="toctree-l2"><a class="reference internal" href="InAndOutputs.html#class-output">Class Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="InAndOutputs.html#class-literaloutput">Class LiteralOutput</a></li>
+<li class="toctree-l2"><a class="reference internal" href="InAndOutputs.html#class-complexoutput">Class ComplexOutput</a></li>
+<li class="toctree-l2"><a class="reference internal" href="InAndOutputs.html#class-boundingboxoutput">Class BoundingBoxOutput</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<span class="target" id="module-pywps.Process"></span><div class="section" id="process">
+<h2>Process<a class="headerlink" href="#process" title="Permalink to this headline">¶</a></h2>
+<p>Package for creating (Py)WPS Process classes</p>
+</div>
+<div class="section" id="class-status">
+<h2>Class  Status<a class="headerlink" href="#class-status" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pywps.Process.Status">
+<em class="property">class </em><tt class="descclassname">pywps.Process.</tt><tt class="descname">Status</tt><a class="headerlink" href="#pywps.Process.Status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Status object for each process</p>
+<dl class="attribute">
+<dt id="pywps.Process.Status.creationTime">
+<tt class="descname">creationTime</tt><a class="headerlink" href="#pywps.Process.Status.creationTime" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="http://docs.python.org/library/time.html#time.time" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">time.time()</span></tt></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.Status.code">
+<tt class="descname">code</tt><a class="headerlink" href="#pywps.Process.Status.code" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8220;processstarted&#8221;, &#8220;processfailed&#8221; or anything else</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.Status.percentCompleted">
+<tt class="descname">percentCompleted</tt><a class="headerlink" href="#pywps.Process.Status.percentCompleted" title="Permalink to this definition">¶</a></dt>
+<dd><p>how far the calculation is</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.Status.value">
+<tt class="descname">value</tt><a class="headerlink" href="#pywps.Process.Status.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>message string to the client</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.Status.onStatusChanged">
+<tt class="descname">onStatusChanged</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Process.Status.onStatusChanged" title="Permalink to this definition">¶</a></dt>
+<dd><p>Redefine this method in your functions</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.Status.set">
+<tt class="descname">set</tt><big>(</big><em>msg=''</em>, <em>percentDone=0</em>, <em>propagate=True</em><big>)</big><a class="headerlink" href="#pywps.Process.Status.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set status message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>msg</strong> (<a class="reference external" href="http://docs.python.org/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; message for the client</li>
+<li><strong>percentDone</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; percent &gt; 0 [0-99]</li>
+<li><strong>propagate</strong> (<em>boolean</em>) &#8211; call onStatusChanged method</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.Status.setProcessStatus">
+<tt class="descname">setProcessStatus</tt><big>(</big><em>code</em>, <em>value</em><big>)</big><a class="headerlink" href="#pywps.Process.Status.setProcessStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets current status of the process. Calls onStatusChanged method</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>code</strong> (<a class="reference external" href="http://docs.python.org/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; one of &#8220;processaccepted&#8221; &#8220;processstarted&#8221;
+&#8220;processsucceeded&#8221; &#8220;processpaused&#8221; &#8220;processfailed&#8221;</li>
+<li><strong>value</strong> (<a class="reference external" href="http://docs.python.org/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; additional message</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="class-wpsprocess">
+<h2>Class WPSProcess<a class="headerlink" href="#class-wpsprocess" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pywps.Process.WPSProcess">
+<em class="property">class </em><tt class="descclassname">pywps.Process.</tt><tt class="descname">WPSProcess</tt><big>(</big><em>identifier</em>, <em>title=None</em>, <em>abstract=None</em>, <em>metadata=[]</em>, <em>profile=[]</em>, <em>version='None'</em>, <em>statusSupported=True</em>, <em>storeSupported=False</em>, <em>grassLocation=None</em>, <em>logFile=&lt;open file '&lt;stderr&gt;'</em>, <em>mode 'w' at 0x7fed2d7c61e0&gt;</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for any PyWPS Process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>identifier</strong> (<a class="reference external" href="http://docs.python.org/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; process identifier</li>
+<li><strong>title</strong> (<a class="reference external" href="http://docs.python.org/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; process title</li>
+<li><strong>abstract</strong> (<a class="reference external" href="http://docs.python.org/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; process description</li>
+<li><strong>metadata</strong> &#8211; <p>List of additional metadata references. See <a class="reference external" href="http://www.opengeospatial.org/standards/common">http://www.opengeospatial.org/standards/common</a>, table 32 on page 65, <a class="reference external" href="http://schemas.opengis.net/xlink/1.0.0/xlinks.xsd">http://schemas.opengis.net/xlink/1.0.0/xlinks.xsd</a></p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>[
+    {
+     &quot;title&quot;: &quot;Title&quot;,
+     &quot;href&quot;: &quot;http://bnhelp.cz/metadata/micka_main.php?ak=detail&amp;uuid=32e80880-c3b0-11dc-8641-873e117140a9&quot;,
+     ... : ...
+     }
+]
+</pre></div>
+</div>
+</li>
+<li><strong>profile</strong> (<em>[string]</em>) &#8211; profile URN</li>
+<li><strong>version</strong> &#8211; process version</li>
+<li><strong>statusSupported</strong> (<em>boolean</em>) &#8211; this process can be run asynchronously</li>
+<li><strong>storeSupported</strong> (<em>boolean</em>) &#8211; outputs from this process can be stored
+for later download</li>
+<li><strong>grassLocation</strong> &#8211; name of GRASS Location within
+&#8220;gisdbase&#8221; directory (from pywps.cfg configuration file).
+If set to True, temporary GRASS Location will be created
+and grass environment will be started. If None or False, no
+GRASS environment will be started.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.identifier">
+<tt class="descname">identifier</tt><a class="headerlink" href="#pywps.Process.WPSProcess.identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process identifier</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.version">
+<tt class="descname">version</tt><a class="headerlink" href="#pywps.Process.WPSProcess.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process version</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.metadata">
+<tt class="descname">metadata</tt><a class="headerlink" href="#pywps.Process.WPSProcess.metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of references to metadata resources</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.title">
+<tt class="descname">title</tt><a class="headerlink" href="#pywps.Process.WPSProcess.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process title</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.abstract">
+<tt class="descname">abstract</tt><a class="headerlink" href="#pywps.Process.WPSProcess.abstract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process abstract</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.wsdl">
+<tt class="descname">wsdl</tt><a class="headerlink" href="#pywps.Process.WPSProcess.wsdl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Not implemented</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.profile">
+<tt class="descname">profile</tt><a class="headerlink" href="#pywps.Process.WPSProcess.profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process profile</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.storeSupported">
+<tt class="descname">storeSupported</tt><a class="headerlink" href="#pywps.Process.WPSProcess.storeSupported" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates, whether the process supports storing of it&#8217;s results for
+later usage</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.statusSupported">
+<tt class="descname">statusSupported</tt><a class="headerlink" href="#pywps.Process.WPSProcess.statusSupported" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates, whether assynchronous running of the process is possible</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.debug">
+<tt class="descname">debug</tt><a class="headerlink" href="#pywps.Process.WPSProcess.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print some information to log file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.status">
+<tt class="descname">status</tt><a class="headerlink" href="#pywps.Process.WPSProcess.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instance of <a class="reference internal" href="#pywps.Process.Status" title="pywps.Process.Status"><tt class="xref py py-class docutils literal"><span class="pre">Status</span></tt></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.inputs">
+<tt class="descname">inputs</tt><a class="headerlink" href="#pywps.Process.WPSProcess.inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of process inputs, <a class="reference internal" href="InAndOutputs.html#pywps.Process.InAndOutputs.Input" title="pywps.Process.InAndOutputs.Input"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.Input</span></tt></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.outputs">
+<tt class="descname">outputs</tt><a class="headerlink" href="#pywps.Process.WPSProcess.outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of process outputs, <a class="reference internal" href="InAndOutputs.html#pywps.Process.InAndOutputs.Output" title="pywps.Process.InAndOutputs.Output"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.Output</span></tt></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.lang">
+<tt class="descname">lang</tt><a class="headerlink" href="#pywps.Process.WPSProcess.lang" title="Permalink to this definition">¶</a></dt>
+<dd><p>instance of <a class="reference internal" href="Lang.html#pywps.Process.Lang.Lang" title="pywps.Process.Lang.Lang"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.Lang.Lang</span></tt></a> class</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.grassLocation">
+<tt class="descname">grassLocation</tt><a class="headerlink" href="#pywps.Process.WPSProcess.grassLocation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates, if and how <a class="reference external" href="http://grass.osgeo.org">GRASS GIS</a> should be used</p>
+<dl class="docutils">
+<dt>None/False</dt>
+<dd>GRASS GIS is not used in any way. No location/mapset is
+created, no GRASS environment is initialized.</dd>
+<dt>True</dt>
+<dd><p class="first">Temporary GRASS location is created. It is in XY reference
+coordinate system</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In the future, location should have the same
+coordinate system, as the input dataset is.</p>
+</div>
+</dd>
+<dt>String</dt>
+<dd>Name of existing GRASS Location (location name or full path),
+with existing PERMANENT mapset, where your Process can take
+input data from (or store results to). Temporary mapset within
+this location is created.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.logFile">
+<tt class="descname">logFile</tt><a class="headerlink" href="#pywps.Process.WPSProcess.logFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>File object, where to print log in.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Process.WPSProcess.pywps">
+<tt class="descname">pywps</tt><a class="headerlink" href="#pywps.Process.WPSProcess.pywps" title="Permalink to this definition">¶</a></dt>
+<dd><p>copy of the <a class="reference internal" href="../index.html#pywps.Pywps" title="pywps.Pywps"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Pywps</span></tt></a> instance</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.addBBoxInput">
+<tt class="descname">addBBoxInput</tt><big>(</big><em>identifier, title, abstract=None, metadata=[], minOccurs=1, maxOccurs=1, crss=['EPSG:4326']</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.addBBoxInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add BoundingBox input</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>identifier</strong> (<a class="reference external" href="http://docs.python.org/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; input identifier</li>
+<li><strong>title</strong> (<a class="reference external" href="http://docs.python.org/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; input title</li>
+<li><strong>abstract</strong> (<a class="reference external" href="http://docs.python.org/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; input description.</li>
+<li><strong>metadata</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a>) &#8211; List of metadata references.</li>
+<li><strong>minOccurs</strong> &#8211; minimum number of occurrences.</li>
+<li><strong>maxOccurs</strong> (<em>integer</em>) &#8211; maximum number of occurrences.</li>
+<li><strong>crss</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a>) &#8211; of supported coordinate systems.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference internal" href="InAndOutputs.html#pywps.Process.InAndOutputs.BoundingBoxInput" title="pywps.Process.InAndOutputs.BoundingBoxInput"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.BoundingBoxInput</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.addBBoxOutput">
+<tt class="descname">addBBoxOutput</tt><big>(</big><em>identifier</em>, <em>title</em>, <em>abstract=None</em>, <em>crs='EPSG:4326'</em>, <em>dimensions=2</em>, <em>asReference=False</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.addBBoxOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new output item of type BoundingBoxValue to this process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>identifier</strong> &#8211; input identifier</li>
+<li><strong>title</strong> &#8211; input title</li>
+<li><strong>abstract</strong> &#8211; input description.</li>
+<li><strong>crss</strong> &#8211; List of strings supported coordinate systems.</li>
+<li><strong>dimensions</strong> &#8211; number of dimensions</li>
+<li><strong>asReference</strong> &#8211; output default asReference</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference internal" href="InAndOutputs.html#pywps.Process.InAndOutputs.BoundingBoxOutput" title="pywps.Process.InAndOutputs.BoundingBoxOutput"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.BoundingBoxOutput</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.addComplexInput">
+<tt class="descname">addComplexInput</tt><big>(</big><em>identifier, title, abstract=None, metadata=[], minOccurs=1, maxOccurs=1, formats=[{'mimeType': None}], maxmegabites=None</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.addComplexInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add complex input to this process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>identifier</strong> &#8211; input identifier</li>
+<li><strong>title</strong> &#8211; input title</li>
+<li><strong>abstract</strong> &#8211; input description.</li>
+<li><strong>minOccurs</strong> &#8211; minimum number of occurrences, default 1</li>
+<li><strong>maxOccurs</strong> &#8211; maximum number of occurrences, default 1</li>
+<li><strong>formats</strong> &#8211; <p>List of dictionary according to table 23 (page 25)
+OGC WPS.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span>
+    <span class="p">{</span><span class="s">&quot;mimeType&quot;</span><span class="p">:</span> <span class="s">&quot;image/tiff&quot;</span><span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s">&quot;mimeType&quot;</span><span class="p">:</span> <span class="s">&quot;text/xml&quot;</span><span class="p">,</span>
+        <span class="s">&quot;encoding&quot;</span><span class="p">:</span> <span class="s">&quot;utf-8&quot;</span><span class="p">,</span>
+        <span class="s">&quot;schema&quot;</span><span class="p">:</span><span class="s">&quot;http://foo/bar&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><strong>maxmegabites</strong> &#8211; Maximum input file size. Can not be bigger, as
+defined in global configuration file.</li>
+<li><strong>metadata</strong> &#8211; <p>List of additional metadata references. See <a class="reference external" href="http://www.opengeospatial.org/standards/common">http://www.opengeospatial.org/standards/common</a>, table 32 on page 65, <a class="reference external" href="http://schemas.opengis.net/xlink/1.0.0/xlinks.xsd">http://schemas.opengis.net/xlink/1.0.0/xlinks.xsd</a></p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>[
+    {
+    &quot;title&quot;: &quot;Title&quot;,
+    &quot;href&quot;: &quot;http://bnhelp.cz/metadata/micka_main.php?ak=detail&amp;uuid=32e80880-c3b0-11dc-8641-873e117140a9&quot;,
+    ... : ...
+    }
+]
+</pre></div>
+</div>
+<p>default: None</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference internal" href="InAndOutputs.html#pywps.Process.InAndOutputs.ComplexInput" title="pywps.Process.InAndOutputs.ComplexInput"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.ComplexInput</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.addComplexOutput">
+<tt class="descname">addComplexOutput</tt><big>(</big><em>identifier, title, abstract=None, metadata=[], formats=[{'mimeType': None}], useMapscript=False, asReference=False</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.addComplexOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add complex output to this process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>identifier</strong> &#8211; output identifier</li>
+<li><strong>title</strong> &#8211; output title</li>
+<li><strong>metadata</strong> &#8211; <p>List of additional metadata references. See <a class="reference external" href="http://www.opengeospatial.org/standards/common">http://www.opengeospatial.org/standards/common</a>, table 32 on page 65, <a class="reference external" href="http://schemas.opengis.net/xlink/1.0.0/xlinks.xsd">http://schemas.opengis.net/xlink/1.0.0/xlinks.xsd</a></p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>[
+    {
+    &quot;title&quot;: &quot;Title&quot;,
+    &quot;href&quot;: &quot;http://bnhelp.cz/metadata/micka_main.php?ak=detail&amp;uuid=32e80880-c3b0-11dc-8641-873e117140a9&quot;,
+    ... : ...
+    }
+]
+</pre></div>
+</div>
+<p>default: None</p>
+</li>
+<li><strong>formats</strong> &#8211; <p>List of dictionaries according to table 23 (page
+25) of the standard</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span>
+    <span class="p">{</span><span class="s">&quot;mimeType&quot;</span><span class="p">:</span> <span class="s">&quot;image/tiff&quot;</span><span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s">&quot;mimeType&quot;</span><span class="p">:</span> <span class="s">&quot;text/xml&quot;</span><span class="p">,</span>
+        <span class="s">&quot;encoding&quot;</span><span class="p">:</span> <span class="s">&quot;utf-8&quot;</span><span class="p">,</span>
+        <span class="s">&quot;schema&quot;</span><span class="p">:</span><span class="s">&quot;http://foo/bar&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><strong>asReference</strong> &#8211; output default asReference</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference internal" href="InAndOutputs.html#pywps.Process.InAndOutputs.ComplexOutput" title="pywps.Process.InAndOutputs.ComplexOutput"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.ComplexOutput</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.addLiteralInput">
+<tt class="descname">addLiteralInput</tt><big>(</big><em>identifier</em>, <em>title</em>, <em>abstract=None</em>, <em>uoms=()</em>, <em>minOccurs=1</em>, <em>maxOccurs=1</em>, <em>allowedValues='*'</em>, <em>type=&lt;type 'int'&gt;</em>, <em>default=None</em>, <em>metadata=[]</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.addLiteralInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new input item of type LiteralValue to this process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>identifier</strong> &#8211; input identifier</li>
+<li><strong>title</strong> &#8211; input title</li>
+<li><strong>abstract</strong> &#8211; input description.</li>
+<li><strong>uoms</strong> (<em>[string]</em>) &#8211; List of value units</li>
+<li><strong>minOccurs</strong> &#8211; minimum number of occurrences, default 1</li>
+<li><strong>maxOccurs</strong> &#8211; maximum number of occurrences, default 1</li>
+<li><strong>allowedValues</strong> &#8211; <p>List of of allowed values,
+which can be used with this input. You can set interval
+using list with two items, like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,(</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span><span class="mi">10</span><span class="p">,</span><span class="s">&quot;a&quot;</span><span class="p">,(</span><span class="s">&quot;d&quot;</span><span class="p">,</span><span class="s">&quot;g&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This will produce allowed values 1,2,3,10, &#8220;a&#8221; and
+any value between 5 and 9 or &#8220;d&#8221; and &#8220;g&#8221;.</p>
+<p>If <cite>*</cite> is used, it means &#8220;any value&#8221;
+default (&#8220;*&#8221;)</p>
+</li>
+<li><strong>type</strong> (<cite>types.TypeType</cite>) &#8211; value type, e.g. Integer, String, etc. you
+can uses the <a class="reference external" href="http://docs.python.org/library/types.html#module-types" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">types</span></tt></a> module of python.
+default: types.IntType</li>
+<li><strong>default</strong> &#8211; default value of this input</li>
+<li><strong>metadata</strong> &#8211; <p>List of additional metadata references. See <a class="reference external" href="http://www.opengeospatial.org/standards/common">http://www.opengeospatial.org/standards/common</a>, table 32 on page 65, <a class="reference external" href="http://schemas.opengis.net/xlink/1.0.0/xlinks.xsd">http://schemas.opengis.net/xlink/1.0.0/xlinks.xsd</a></p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>[
+    {
+    &quot;title&quot;: &quot;Title&quot;,
+    &quot;href&quot;: &quot;http://bnhelp.cz/metadata/micka_main.php?ak=detail&amp;uuid=32e80880-c3b0-11dc-8641-873e117140a9&quot;,
+    ... : ...
+    }
+]
+</pre></div>
+</div>
+<p>default: None</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference internal" href="InAndOutputs.html#pywps.Process.InAndOutputs.LiteralInput" title="pywps.Process.InAndOutputs.LiteralInput"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.LiteralInput</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.addLiteralOutput">
+<tt class="descname">addLiteralOutput</tt><big>(</big><em>identifier</em>, <em>title</em>, <em>abstract=None</em>, <em>metadata=[]</em>, <em>uoms=()</em>, <em>type=&lt;type 'int'&gt;</em>, <em>default=None</em>, <em>asReference=False</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.addLiteralOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new output item of type LiteralValue to this process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>identifier</strong> &#8211; input identifier</li>
+<li><strong>title</strong> &#8211; input title</li>
+<li><strong>abstract</strong> &#8211; input description.</li>
+<li><strong>uoms</strong> &#8211; List of string  value units</li>
+<li><strong>type</strong> &#8211; <tt class="xref py py-class docutils literal"><span class="pre">types.TypeType</span></tt> value type, e.g. Integer, String, etc. you
+can uses the <a class="reference external" href="http://docs.python.org/library/types.html#module-types" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">types</span></tt></a> module of python.</li>
+<li><strong>default</strong> &#8211; default value, if any</li>
+<li><strong>metadata</strong> &#8211; List of additional metadata references. See <a class="reference external" href="http://www.opengeospatial.org/standards/common">http://www.opengeospatial.org/standards/common</a>, table 32 on page 65, <a class="reference external" href="http://schemas.opengis.net/xlink/1.0.0/xlinks.xsd">http://schemas.opengis.net/xlink/1.0.0/xlinks.xsd</a></li>
+<li><strong>asReference</strong> &#8211; output default asReference</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference internal" href="InAndOutputs.html#pywps.Process.InAndOutputs.LiteralOutput" title="pywps.Process.InAndOutputs.LiteralOutput"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.LiteralOutput</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.cmd">
+<tt class="descname">cmd</tt><big>(</big><em>cmd</em>, <em>stdin=None</em>, <em>stdout=True</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.cmd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Command line commands (including GRASS modules)</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This module is supposed to be used instead of &#8216;os.system()&#8217;, while
+running GRASS modules</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>cmd</strong> (<em>[string]</em>) &#8211; the command, as list of parameters</li>
+<li><strong>stdin</strong> &#8211; string to be send into the command via standard in</li>
+<li><strong>stdout</strong> (<em>boolean</em>) &#8211; give stdout and stderror from the command back</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">standard ouput from the command</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="p">([</span><span class="s">&quot;r.los&quot;</span><span class="p">,</span><span class="s">&quot;in=elevation.dem&quot;</span><span class="p">,</span><span class="s">&quot;out=los&quot;</span><span class="p">,</span><span class="s">&quot;coord=1000,1000&quot;</span><span class="p">])</span>
+
+<span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="p">([</span><span class="s">&quot;v.net.path&quot;</span><span class="p">,</span><span class="s">&quot;network&quot;</span><span class="p">,</span><span class="s">&quot;afcol=forward&quot;</span><span class="p">,</span><span class="s">&quot;abcol=backward&quot;</span><span class="p">,</span>
+<span class="s">&quot;out=mypath&quot;</span><span class="p">,</span><span class="s">&#39;&#39;&#39;nlayer=1&quot;,&quot;1 9 12&quot;&#39;&#39;&#39;</span><span class="p">])</span>
+
+<span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="p">([</span><span class="s">&quot;d.mon&quot;</span><span class="p">,</span><span class="s">&quot;start=PNG&quot;</span><span class="p">],</span><span class="n">stdout</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.execute">
+<tt class="descname">execute</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method will be called by <a class="reference internal" href="../Wps/Execute.html#pywps.Wps.Execute.Execute" title="pywps.Wps.Execute.Execute"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Wps.Execute.Execute</span></tt></a>. Please
+redefine this in your process instance</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None if succeeded, error message otherwise.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.getInput">
+<tt class="descname">getInput</tt><big>(</big><em>identifier</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.getInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get input defined by identifier</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>identifier</strong> &#8211; input identifier</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="InAndOutputs.html#pywps.Process.InAndOutputs.Input" title="pywps.Process.InAndOutputs.Input"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.Input</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.getInputValue">
+<tt class="descname">getInputValue</tt><big>(</big><em>identifier</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.getInputValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get input value according to identifier</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>identifier</strong> &#8211; input identifier</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None or <cite>self.inputs[identifier].value</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.i18n">
+<tt class="descname">i18n</tt><big>(</big><em>key</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.i18n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Give back translation of defined key</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key</strong> &#8211; key value to be translated</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">translated string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.initProcess">
+<tt class="descname">initProcess</tt><big>(</big><em>title=None</em>, <em>abstract=None</em>, <em>metadata=[]</em>, <em>profile=[]</em>, <em>version=None</em>, <em>statusSupported=True</em>, <em>storeSupported=False</em>, <em>grassLocation=None</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.initProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Can be used for later process re-initialization</p>
+<p>For parameters, see constructor <a class="reference internal" href="#pywps.Process.WPSProcess" title="pywps.Process.WPSProcess"><tt class="xref py py-class docutils literal"><span class="pre">WPSProcess</span></tt></a> parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.message">
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>force=False</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print some message to logfile</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>msg</strong> &#8211; print this string to logfile</li>
+<li><strong>force</strong> &#8211; if self.debug or force == True, the message will be
+printed. nothing happen otherwise.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.WPSProcess.setOutputValue">
+<tt class="descname">setOutputValue</tt><big>(</big><em>identifier</em>, <em>value</em><big>)</big><a class="headerlink" href="#pywps.Process.WPSProcess.setOutputValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set output value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>identifier</strong> &#8211; output identifier</li>
+<li><strong>value</strong> &#8211; value to be set</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+</div></div></div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../../index.html"> <img
+	class="logo" src="../../_static/pywps.png" alt="Logo" /> </a></p>
+<h3><a href="../../index.html">Table Of
+Contents</a></h3>
+<ul>
+<li><a class="reference internal" href="#">Module Process</a><ul>
+<li><a class="reference internal" href="#process">Process</a></li>
+<li><a class="reference internal" href="#class-status">Class  Status</a></li>
+<li><a class="reference internal" href="#class-wpsprocess">Class WPSProcess</a></li>
+</ul>
+</li>
+</ul>
+
+<h4>Previous topic</h4>
+<p class="topless"><a href="../Parser/Execute.html"
+	title="previous chapter">Module Execute</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="Lang.html"
+	title="next chapter">Module Lang</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a href="../../_sources/api/Process/index.txt"
+		rel="nofollow">Show Source</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form class="search" action="../../search.html" method="get">
+<input type="text" name="q" size="18" /> <input type="submit"
+	value="Go" /> <input type="hidden" name="check_keywords"
+	value="yes" /> <input type="hidden" name="area" value="default" /></form>
+<p class="searchtip" style="font-size: 90%">Enter search terms
+or a module, class or function name.</p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script></div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../../genindex.html" title="General Index">index</a></li>
+	<li class="right" >
+	<a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="Lang.html" title="Module Lang">next</a> |</li>
+	<li class="right" >
+	<a href="../Parser/Execute.html" title="Module Execute">previous</a> |</li>
+	<li><a href="../../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="../index.html" >PyWPS  API</a>
+&raquo;</li> 
+</ul>
+</div>
+<div class="footer"> &copy; Copyright 2010, Jachym Cepicky. Created using <a
+	href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.</div>
+</body>
+</html>

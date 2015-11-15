@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>WPS DescribeProcess request handler &mdash;
+PyWPS 3.2.0 documentation</title>
+<link rel="stylesheet" href="../../_static/default.css"
+	type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css"
+	type="text/css" />
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script type="text/javascript" src="../../_static/jquery.js"></script>
+<script type="text/javascript" src="../../_static/underscore.js"></script>
+<script type="text/javascript" src="../../_static/doctools.js"></script>
+<link rel="top" title="PyWPS 3.2.0 documentation" href="../../index.html" />
+<link rel="up" title="Module Wps"
+	href="index.html" />
+<link rel="next" title="WPS Execute request handler"
+	href="Execute.html" />
+<link rel="prev" title="WPS GetCapabilities request handler"
+	href="GetCapabilities.html" /> 
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../../genindex.html" title="General Index"accesskey="I">index</a></li>
+	<li class="right" >
+	<a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="Execute.html" title="WPS Execute request handler"accesskey="N">next</a> |</li>
+	<li class="right" >
+	<a href="GetCapabilities.html" title="WPS GetCapabilities request handler"accesskey="P">previous</a> |</li>
+	<li><a href="../../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="../index.html" >PyWPS  API</a>
+&raquo;</li>
+	<li><a href="index.html" accesskey="U">Module Wps</a>
+&raquo;</li> 
+</ul>
+</div>  
+
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+  <div class="section" id="module-pywps.Wps.DescribeProcess">
+<span id="wps-describeprocess-request-handler"></span><h1>WPS DescribeProcess request handler<a class="headerlink" href="#module-pywps.Wps.DescribeProcess" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="class-describeprocess">
+<h2>Class DescribeProcess<a class="headerlink" href="#class-describeprocess" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pywps.Wps.DescribeProcess.DescribeProcess">
+<em class="property">class </em><tt class="descclassname">pywps.Wps.DescribeProcess.</tt><tt class="descname">DescribeProcess</tt><big>(</big><em>wps</em>, <em>processes=None</em><big>)</big><a class="headerlink" href="#pywps.Wps.DescribeProcess.DescribeProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses input request obtained via HTTP POST encoding - should be XML
+file.</p>
+<dl class="method">
+<dt id="pywps.Wps.DescribeProcess.DescribeProcess.bboxValue">
+<tt class="descname">bboxValue</tt><big>(</big><em>input</em>, <em>processInput</em><big>)</big><a class="headerlink" href="#pywps.Wps.DescribeProcess.DescribeProcess.bboxValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format bboxValue value attributes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>inoutput</strong> &#8211; <a class="reference internal" href="../Process/InAndOutputs.html#pywps.Process.InAndOutputs.Input" title="pywps.Process.InAndOutputs.Input"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.Input</span></tt></a> or 
+<a class="reference internal" href="../Process/InAndOutputs.html#pywps.Process.InAndOutputs.Output" title="pywps.Process.InAndOutputs.Output"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.Output</span></tt></a></li>
+<li><strong>processInOutput</strong> &#8211; dictionary, where to store the parameters
+in</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.DescribeProcess.DescribeProcess.complexValue">
+<tt class="descname">complexValue</tt><big>(</big><em>inoutput</em>, <em>processInOutput</em><big>)</big><a class="headerlink" href="#pywps.Wps.DescribeProcess.DescribeProcess.complexValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format complex value attributes, it also changes None format to application/x-empty</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>inoutput</strong> &#8211; <a class="reference internal" href="../Process/InAndOutputs.html#pywps.Process.InAndOutputs.Input" title="pywps.Process.InAndOutputs.Input"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.Input</span></tt></a> or 
+<a class="reference internal" href="../Process/InAndOutputs.html#pywps.Process.InAndOutputs.Output" title="pywps.Process.InAndOutputs.Output"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.Output</span></tt></a></li>
+<li><strong>processInOutput</strong> &#8211; dictionary, where to store the parameters
+in</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.DescribeProcess.DescribeProcess.literalValue">
+<tt class="descname">literalValue</tt><big>(</big><em>inoutput</em>, <em>processInOutput</em><big>)</big><a class="headerlink" href="#pywps.Wps.DescribeProcess.DescribeProcess.literalValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format literal value attributes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>inoutput</strong> &#8211; <a class="reference internal" href="../Process/InAndOutputs.html#pywps.Process.InAndOutputs.Input" title="pywps.Process.InAndOutputs.Input"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.Input</span></tt></a> or 
+<a class="reference internal" href="../Process/InAndOutputs.html#pywps.Process.InAndOutputs.Output" title="pywps.Process.InAndOutputs.Output"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Process.InAndOutputs.Output</span></tt></a></li>
+<li><strong>processInOutput</strong> &#8211; dictionary, where to store the parameters
+in</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.DescribeProcess.DescribeProcess.processInputs">
+<tt class="descname">processInputs</tt><big>(</big><em>process</em><big>)</big><a class="headerlink" href="#pywps.Wps.DescribeProcess.DescribeProcess.processInputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format process inputs block</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dictionary, which is to be used for
+<a class="reference internal" href="../Template.html#pywps.Template.TemplateProcessor.set" title="pywps.Template.TemplateProcessor.set"><tt class="xref py py-func docutils literal"><span class="pre">pywps.Template.TemplateProcessor.set()</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.DescribeProcess.DescribeProcess.processOutputs">
+<tt class="descname">processOutputs</tt><big>(</big><em>process</em><big>)</big><a class="headerlink" href="#pywps.Wps.DescribeProcess.DescribeProcess.processOutputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format process outputs block</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dictionary, which is to be used for
+<a class="reference internal" href="../Template.html#pywps.Template.TemplateProcessor.set" title="pywps.Template.TemplateProcessor.set"><tt class="xref py py-func docutils literal"><span class="pre">pywps.Template.TemplateProcessor.set()</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.DescribeProcess.DescribeProcess.processesDescription">
+<tt class="descname">processesDescription</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.DescribeProcess.DescribeProcess.processesDescription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format process description block</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dictionary, which is to be used for
+<a class="reference internal" href="../Template.html#pywps.Template.TemplateProcessor.set" title="pywps.Template.TemplateProcessor.set"><tt class="xref py py-func docutils literal"><span class="pre">pywps.Template.TemplateProcessor.set()</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+</div></div></div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../../index.html"> <img
+	class="logo" src="../../_static/pywps.png" alt="Logo" /> </a></p>
+<h3><a href="../../index.html">Table Of
+Contents</a></h3>
+<ul>
+<li><a class="reference internal" href="#">WPS DescribeProcess request handler</a><ul>
+<li><a class="reference internal" href="#class-describeprocess">Class DescribeProcess</a></li>
+</ul>
+</li>
+</ul>
+
+<h4>Previous topic</h4>
+<p class="topless"><a href="GetCapabilities.html"
+	title="previous chapter">WPS GetCapabilities request handler</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="Execute.html"
+	title="next chapter">WPS Execute request handler</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a href="../../_sources/api/Wps/DescribeProcess.txt"
+		rel="nofollow">Show Source</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form class="search" action="../../search.html" method="get">
+<input type="text" name="q" size="18" /> <input type="submit"
+	value="Go" /> <input type="hidden" name="check_keywords"
+	value="yes" /> <input type="hidden" name="area" value="default" /></form>
+<p class="searchtip" style="font-size: 90%">Enter search terms
+or a module, class or function name.</p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script></div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../../genindex.html" title="General Index">index</a></li>
+	<li class="right" >
+	<a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="Execute.html" title="WPS Execute request handler">next</a> |</li>
+	<li class="right" >
+	<a href="GetCapabilities.html" title="WPS GetCapabilities request handler">previous</a> |</li>
+	<li><a href="../../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="../index.html" >PyWPS  API</a>
+&raquo;</li>
+	<li><a href="index.html" >Module Wps</a>
+&raquo;</li> 
+</ul>
+</div>
+<div class="footer"> &copy; Copyright 2010, Jachym Cepicky. Created using <a
+	href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.</div>
+</body>
+</html>

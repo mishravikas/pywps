@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>PyWPS Process &mdash;
+PyWPS 3.2.0 documentation</title>
+<link rel="stylesheet" href="../_static/default.css"
+	type="text/css" />
+<link rel="stylesheet" href="../_static/pygments.css"
+	type="text/css" />
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script type="text/javascript" src="../_static/jquery.js"></script>
+<script type="text/javascript" src="../_static/underscore.js"></script>
+<script type="text/javascript" src="../_static/doctools.js"></script>
+<link rel="top" title="PyWPS 3.2.0 documentation" href="../index.html" />
+<link rel="next" title="Process structure"
+	href="structure.html" />
+<link rel="prev" title="Testing PyWPS"
+	href="../testing/index.html" /> 
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../genindex.html" title="General Index"accesskey="I">index</a></li>
+	<li class="right" >
+	<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="structure.html" title="Process structure"accesskey="N">next</a> |</li>
+	<li class="right" >
+	<a href="../testing/index.html" title="Testing PyWPS"accesskey="P">previous</a> |</li>
+	<li><a href="../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li> 
+</ul>
+</div>  
+
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+  <div class="section" id="pywps-process">
+<span id="process"></span><h1>PyWPS Process<a class="headerlink" href="#pywps-process" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="processes-directory">
+<h2>Processes directory<a class="headerlink" href="#processes-directory" title="Permalink to this headline">¶</a></h2>
+<p>A PyWPS process can be thought of as a
+<a class="reference external" href="http://docs.python.org/tutorial/modules.html">Python module</a>.  All
+PyWPS processes are stored in one directory <a class="reference external" href="http://docs.python.org/tutorial/modules.html#packages">Python Package</a>.  The <tt class="file docutils literal"><span class="pre">__init__.py</span></tt> file
+must contain the list of processes in <cite>__all__</cite> array.</p>
+<div class="section" id="default-location-for-processes">
+<h3>Default location for processes<a class="headerlink" href="#default-location-for-processes" title="Permalink to this headline">¶</a></h3>
+<p>The default location of PyWPS processes is located in the
+<tt class="file docutils literal"><span class="pre">pywps/processes</span></tt> directory, in the installation location of PyWPS.</p>
+</div>
+<div class="section" id="configuration-via-pywps-processes-environment-variable">
+<h3>Configuration via <span class="target" id="index-0"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PYWPS_PROCESSES</span></tt> environment variable<a class="headerlink" href="#configuration-via-pywps-processes-environment-variable" title="Permalink to this headline">¶</a></h3>
+<p>Usually, you will overwrite this with the <span class="target" id="index-1"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PYWPS_PROCESSES</span></tt> environment
+variable in the <a class="reference internal" href="../configuration/index.html#configuration"><em>Configuration</em></a>.</p>
+</div>
+<div class="section" id="configuration-via-configuration-file">
+<h3>Configuration via configuration file<a class="headerlink" href="#configuration-via-configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>Alternatively you can set the <cite>processesPath</cite> variable in the configuration file.</p>
+</div>
+</div>
+<div class="section" id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
+<p>PyWPS uses Python module <a class="reference external" href="http://docs.python.org/library/logging.html#module-logging" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">logging</span></tt></a> for logging purposes. If there is
+something you need to log (activity, variable content for debug or
+anything else), just import the module and use accordingly:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">logging</span>
+<span class="o">...</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Just information message&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Variable content: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">variable</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;Error occured: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The logs are printed to standard error, or to a file set in the configuration
+file <a class="reference internal" href="../configuration/index.html#configuration"><em>Configuration</em></a>. Log level is set with <cite>logLevel</cite> option, also in
+the configuration file.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Process structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="puts.html">Process Inputs and Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="execute.html">Execution of the process</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+</div></div></div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../index.html"> <img
+	class="logo" src="../_static/pywps.png" alt="Logo" /> </a></p>
+<h3><a href="../index.html">Table Of
+Contents</a></h3>
+<ul>
+<li><a class="reference internal" href="#">PyWPS Process</a><ul>
+<li><a class="reference internal" href="#processes-directory">Processes directory</a><ul>
+<li><a class="reference internal" href="#default-location-for-processes">Default location for processes</a></li>
+<li><a class="reference internal" href="#configuration-via-pywps-processes-environment-variable">Configuration via <tt class="docutils literal"><span class="pre">PYWPS_PROCESSES</span></tt> environment variable</a></li>
+<li><a class="reference internal" href="#configuration-via-configuration-file">Configuration via configuration file</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#logging">Logging</a></li>
+</ul>
+</li>
+</ul>
+
+<h4>Previous topic</h4>
+<p class="topless"><a href="../testing/index.html"
+	title="previous chapter">Testing PyWPS</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="structure.html"
+	title="next chapter">Process structure</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a href="../_sources/process/index.txt"
+		rel="nofollow">Show Source</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form class="search" action="../search.html" method="get">
+<input type="text" name="q" size="18" /> <input type="submit"
+	value="Go" /> <input type="hidden" name="check_keywords"
+	value="yes" /> <input type="hidden" name="area" value="default" /></form>
+<p class="searchtip" style="font-size: 90%">Enter search terms
+or a module, class or function name.</p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script></div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../genindex.html" title="General Index">index</a></li>
+	<li class="right" >
+	<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="structure.html" title="Process structure">next</a> |</li>
+	<li class="right" >
+	<a href="../testing/index.html" title="Testing PyWPS">previous</a> |</li>
+	<li><a href="../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li> 
+</ul>
+</div>
+<div class="footer"> &copy; Copyright 2010, Jachym Cepicky. Created using <a
+	href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.</div>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>WPS Execute request handler &mdash;
+PyWPS 3.2.0 documentation</title>
+<link rel="stylesheet" href="../../_static/default.css"
+	type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css"
+	type="text/css" />
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script type="text/javascript" src="../../_static/jquery.js"></script>
+<script type="text/javascript" src="../../_static/underscore.js"></script>
+<script type="text/javascript" src="../../_static/doctools.js"></script>
+<link rel="top" title="PyWPS 3.2.0 documentation" href="../../index.html" />
+<link rel="up" title="Module Wps"
+	href="index.html" />
+<link rel="prev" title="WPS DescribeProcess request handler"
+	href="DescribeProcess.html" /> 
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../../genindex.html" title="General Index"accesskey="I">index</a></li>
+	<li class="right" >
+	<a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="DescribeProcess.html" title="WPS DescribeProcess request handler"accesskey="P">previous</a> |</li>
+	<li><a href="../../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="../index.html" >PyWPS  API</a>
+&raquo;</li>
+	<li><a href="index.html" accesskey="U">Module Wps</a>
+&raquo;</li> 
+</ul>
+</div>  
+
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+  <div class="section" id="module-pywps.Wps.Execute">
+<span id="wps-execute-request-handler"></span><h1>WPS Execute request handler<a class="headerlink" href="#module-pywps.Wps.Execute" title="Permalink to this headline">¶</a></h1>
+<dl class="data">
+<dt id="pywps.Wps.Execute.TEMPDIRPREFIX">
+<tt class="descclassname">pywps.Wps.Execute.</tt><tt class="descname">TEMPDIRPREFIX</tt><a class="headerlink" href="#pywps.Wps.Execute.TEMPDIRPREFIX" title="Permalink to this definition">¶</a></dt>
+<dd><p>prefix of temporary pywps directory</p>
+</dd></dl>
+
+<div class="section" id="class-execute">
+<h2>Class Execute<a class="headerlink" href="#class-execute" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pywps.Wps.Execute.Execute">
+<em class="property">class </em><tt class="descclassname">pywps.Wps.Execute.</tt><tt class="descname">Execute</tt><big>(</big><em>wps</em>, <em>processes=None</em>, <em>spawned=False</em><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class performs the Execute request of WPS specification and
+formats output</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>wps</strong> &#8211; <a class="reference internal" href="../index.html#pywps.Pywps" title="pywps.Pywps"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Pywps</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.accepted">
+<tt class="descname">accepted</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.accepted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process accepted indicator string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.started">
+<tt class="descname">started</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.started" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process started indicator string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.succeeded">
+<tt class="descname">succeeded</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.succeeded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process succeeded indicator string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.paused">
+<tt class="descname">paused</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.paused" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process paused indicator string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.failed">
+<tt class="descname">failed</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.failed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process failed indicator string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.curdir">
+<tt class="descname">curdir</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.curdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Curent working directory, when the process is started</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.pid">
+<tt class="descname">pid</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.pid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Id of currently running process on the system level</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.id">
+<tt class="descname">id</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unique WPS Process identification</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.statusLocation">
+<tt class="descname">statusLocation</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.statusLocation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Location, where status and response files are stored</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.outputFileName">
+<tt class="descname">outputFileName</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.outputFileName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the file, where status informations are printed to</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.outputFile">
+<tt class="descname">outputFile</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.outputFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of file objects, where status informations are printed to</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.storeRequired">
+<tt class="descname">storeRequired</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.storeRequired" title="Permalink to this definition">¶</a></dt>
+<dd><p>Storing of process results is required</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.statusRequired">
+<tt class="descname">statusRequired</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.statusRequired" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process should run in assynchronous mode</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.lineageRequired">
+<tt class="descname">lineageRequired</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.lineageRequired" title="Permalink to this definition">¶</a></dt>
+<dd><p>Include input and output description to final response document
+(just like DescribeProcess would do it)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.status">
+<tt class="descname">status</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current process status,  one of <tt class="xref py py-attr docutils literal"><span class="pre">processaccepted</span></tt>,
+<tt class="xref py py-attr docutils literal"><span class="pre">processstarted</span></tt>, <tt class="xref py py-attr docutils literal"><span class="pre">processsucceeded</span></tt>, <tt class="xref py py-attr docutils literal"><span class="pre">processfailed</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.statusMessage">
+<tt class="descname">statusMessage</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.statusMessage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Text message or comment to particular status</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.percent">
+<tt class="descname">percent</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.percent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Percent done</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.exceptioncode">
+<tt class="descname">exceptioncode</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.exceptioncode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Code of exception</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.locator">
+<tt class="descname">locator</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.locator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Locator of exception</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.statusTime">
+<tt class="descname">statusTime</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.statusTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>current status time</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.dirsToBeRemoved">
+<tt class="descname">dirsToBeRemoved</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.dirsToBeRemoved" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of directories, which should be removed, after the process is
+successfully calculated</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.workingDir">
+<tt class="descname">workingDir</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.workingDir" title="Permalink to this definition">¶</a></dt>
+<dd><p>working directory, where the calculation is done</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.grass">
+<tt class="descname">grass</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.grass" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="../Grass.html#pywps.Grass.Grass" title="pywps.Grass.Grass"><tt class="xref py py-class docutils literal"><span class="pre">pywps.Grass.Grass</span></tt></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.rawDataOutput">
+<tt class="descname">rawDataOutput</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.rawDataOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>indicates, if there is any output, which should be returned
+directly (without final xml response document)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.umn">
+<tt class="descname">umn</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.umn" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">pywps.UMN.UMN</span></tt></p>
+<p>UMN MapServer - mapscript handler</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pywps.Wps.Execute.Execute.spawned">
+<tt class="descname">spawned</tt><a class="headerlink" href="#pywps.Wps.Execute.Execute.spawned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates, wheather this is running as child process of the main
+process</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.calculateMaxInputSize">
+<tt class="descname">calculateMaxInputSize</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.calculateMaxInputSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates maximal size for input file based on configuration
+and units</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">maximum file size bytes</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.checkMimeTypeOutput">
+<tt class="descname">checkMimeTypeOutput</tt><big>(</big><em>output</em><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.checkMimeTypeOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks the complexData output to determine if the mimeType is correct.
+if mimeType is not in the list defined by the user then it will log it as an error, no further action will be taken
+Mainly used by: _asReferenceOutput,_complexOutput,_lineageComplexOutput,_lineageComplexReference
+Note: checkMimeTypeIn will set the output&#8217;s format from the first time, if the user doesnt define an outputmimetype,
+we&#8217;ll use the first one in the list (set by CheckMimeTypeIn), the mimeType will then be validate using ligmagic</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.cleanEnv">
+<tt class="descname">cleanEnv</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.cleanEnv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes temporary created files and dictionaries</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.consolidateInputs">
+<tt class="descname">consolidateInputs</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.consolidateInputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Donwload and control input data, defined by the client</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.consolidateOutputs">
+<tt class="descname">consolidateOutputs</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.consolidateOutputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set desired attributes (e.g. asReference) for each output</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.executeProcess">
+<tt class="descname">executeProcess</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.executeProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls &#8216;execute&#8217; method of the process, catches possible exceptions
+and set process failed or succeeded</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.getRequestedOutputs">
+<tt class="descname">getRequestedOutputs</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.getRequestedOutputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called from processOutputs and cross references the processe&#8217;s outputs and the ones requested,
+returning a list of ouputs that need to be present in the XML response document</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.getSessionId">
+<tt class="descname">getSessionId</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.getSessionId" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns unique Execute session ID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">unique id:<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;pywps-&quot;</span><span class="o">+</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid1</span><span class="p">()</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.getSessionIdFromStatusLocation">
+<tt class="descname">getSessionIdFromStatusLocation</tt><big>(</big><em>statusLocation</em><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.getSessionIdFromStatusLocation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the statusLocation, and gets the unique session ID from it</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Not in use, maybe should be removed.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.initEnv">
+<tt class="descname">initEnv</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.initEnv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create process working directory, initialize GRASS environment,
+if required.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.initProcess">
+<tt class="descname">initProcess</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.initProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setting and controlling input values, set by the client. Also the
+processes from PYWPS_PROCESS directory or default directory is
+imported.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.lineageInputs">
+<tt class="descname">lineageInputs</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.lineageInputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called, if lineage request was set. Fills the &lt;DataInputs&gt; part of
+output XML document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.onInputProblem">
+<tt class="descname">onInputProblem</tt><big>(</big><em>what</em>, <em>why</em><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.onInputProblem" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used for rewriting onProblem method of each input</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>what</strong> &#8211; locator of the problem</li>
+<li><strong>why</strong> &#8211; possible reason of the problem</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.onOutputProblem">
+<tt class="descname">onOutputProblem</tt><big>(</big><em>what</em>, <em>why</em><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.onOutputProblem" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method logs the existance of problens in the complexData mainly (output mimeType?)
+:param what: locator of the problem
+:param why: possible reason of the problem</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.onStatusChanged">
+<tt class="descname">onStatusChanged</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.onStatusChanged" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used for redefinition of self.process.status class</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.outputDefinitions">
+<tt class="descname">outputDefinitions</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.outputDefinitions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called, if lineage request was set. Fills the &lt;OutputDefinitions&gt; part of
+output XML document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.processDescription">
+<tt class="descname">processDescription</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.processDescription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fills Identifier, Title and Abstract, eventually WSDL, Metadata and Profile
+parts of the output XML document</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.processOutputs">
+<tt class="descname">processOutputs</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.processOutputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill &lt;ProcessOutputs&gt; part in the output XML document
+This method is called if, self.status == ProcessSucceeded</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.promoteStatus">
+<tt class="descname">promoteStatus</tt><big>(</big><em>status</em>, <em>statusMessage=0</em>, <em>percent=0</em>, <em>exceptioncode=0</em>, <em>locator=0</em>, <em>output=None</em><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.promoteStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets status of currently performed Execute request</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>status</strong> &#8211; name of the status</li>
+<li><strong>statusMessage</strong> &#8211; message, which should appear in output xml file</li>
+<li><strong>percent</strong> &#8211; percent done message</li>
+<li><strong>exceptioncode</strong> &#8211; eventually exception</li>
+<li><strong>locator</strong> &#8211; where the problem occurred</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.serviceInstanceUrl">
+<tt class="descname">serviceInstanceUrl</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.serviceInstanceUrl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates URL of GetCapabilities for this WPS</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">server address</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Wps.Execute.Execute.setRawData">
+<tt class="descname">setRawData</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Wps.Execute.Execute.setRawData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets response and contentType</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+</div></div></div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../../index.html"> <img
+	class="logo" src="../../_static/pywps.png" alt="Logo" /> </a></p>
+<h3><a href="../../index.html">Table Of
+Contents</a></h3>
+<ul>
+<li><a class="reference internal" href="#">WPS Execute request handler</a><ul>
+<li><a class="reference internal" href="#class-execute">Class Execute</a></li>
+</ul>
+</li>
+</ul>
+
+<h4>Previous topic</h4>
+<p class="topless"><a href="DescribeProcess.html"
+	title="previous chapter">WPS DescribeProcess request handler</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a href="../../_sources/api/Wps/Execute.txt"
+		rel="nofollow">Show Source</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form class="search" action="../../search.html" method="get">
+<input type="text" name="q" size="18" /> <input type="submit"
+	value="Go" /> <input type="hidden" name="check_keywords"
+	value="yes" /> <input type="hidden" name="area" value="default" /></form>
+<p class="searchtip" style="font-size: 90%">Enter search terms
+or a module, class or function name.</p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script></div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../../genindex.html" title="General Index">index</a></li>
+	<li class="right" >
+	<a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="DescribeProcess.html" title="WPS DescribeProcess request handler">previous</a> |</li>
+	<li><a href="../../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="../index.html" >PyWPS  API</a>
+&raquo;</li>
+	<li><a href="index.html" >Module Wps</a>
+&raquo;</li> 
+</ul>
+</div>
+<div class="footer"> &copy; Copyright 2010, Jachym Cepicky. Created using <a
+	href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.</div>
+</body>
+</html>

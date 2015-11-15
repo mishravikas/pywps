@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Module Lang &mdash;
+PyWPS 3.2.0 documentation</title>
+<link rel="stylesheet" href="../../_static/default.css"
+	type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css"
+	type="text/css" />
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script type="text/javascript" src="../../_static/jquery.js"></script>
+<script type="text/javascript" src="../../_static/underscore.js"></script>
+<script type="text/javascript" src="../../_static/doctools.js"></script>
+<link rel="top" title="PyWPS 3.2.0 documentation" href="../../index.html" />
+<link rel="up" title="Module Process"
+	href="index.html" />
+<link rel="next" title="Module InAndOutputs"
+	href="InAndOutputs.html" />
+<link rel="prev" title="Module Process"
+	href="index.html" /> 
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../../genindex.html" title="General Index"accesskey="I">index</a></li>
+	<li class="right" >
+	<a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="InAndOutputs.html" title="Module InAndOutputs"accesskey="N">next</a> |</li>
+	<li class="right" >
+	<a href="index.html" title="Module Process"accesskey="P">previous</a> |</li>
+	<li><a href="../../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="../index.html" >PyWPS  API</a>
+&raquo;</li>
+	<li><a href="index.html" accesskey="U">Module Process</a>
+&raquo;</li> 
+</ul>
+</div>  
+
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+  <div class="section" id="module-pywps.Process.Lang">
+<span id="module-lang"></span><h1>Module Lang<a class="headerlink" href="#module-pywps.Process.Lang" title="Permalink to this headline">¶</a></h1>
+<p>Set and get language codes, initialize translated messages, so that the
+user scan use them directly in processes.</p>
+<p>In the process:</p>
+<blockquote>
+<div><p>User has to define set of messages for all supported languages, like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">lang</span><span class="p">[</span><span class="s">&quot;eng&quot;</span><span class="p">][</span><span class="s">&quot;key1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;Hallo, world!&quot;</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">lang</span><span class="p">[</span><span class="s">&quot;eng&quot;</span><span class="p">][</span><span class="s">&quot;key2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;Foo&quot;</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">lang</span><span class="p">[</span><span class="s">&quot;eng&quot;</span><span class="p">][</span><span class="s">&quot;key3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;Bar&quot;</span>
+</pre></div>
+</div>
+<p>Than the user can use self.i18n(key) method, which returns the string
+in preset language (given by client request)</p>
+</div></blockquote>
+<div class="section" id="class-lang">
+<h2>Class Lang<a class="headerlink" href="#class-lang" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pywps.Process.Lang.Lang">
+<em class="property">class </em><tt class="descclassname">pywps.Process.Lang.</tt><tt class="descname">Lang</tt><a class="headerlink" href="#pywps.Process.Lang.Lang" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lang class</p>
+<dl class="method">
+<dt id="pywps.Process.Lang.Lang.get">
+<tt class="descname">get</tt><big>(</big><em>key</em><big>)</big><a class="headerlink" href="#pywps.Process.Lang.Lang.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Will return desired string in selected language</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.Lang.Lang.initStrings">
+<tt class="descname">initStrings</tt><big>(</big><big>)</big><a class="headerlink" href="#pywps.Process.Lang.Lang.initStrings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.strings object according to known codes from
+Lang.py</p>
+<p>It can be used later like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">strings</span><span class="p">[</span><span class="s">&quot;eng&quot;</span><span class="p">][</span><span class="s">&quot;foo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;bar&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pywps.Process.Lang.Lang.setCode">
+<tt class="descname">setCode</tt><big>(</big><em>code</em><big>)</big><a class="headerlink" href="#pywps.Process.Lang.Lang.setCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set chosen language code</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+</div></div></div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../../index.html"> <img
+	class="logo" src="../../_static/pywps.png" alt="Logo" /> </a></p>
+<h3><a href="../../index.html">Table Of
+Contents</a></h3>
+<ul>
+<li><a class="reference internal" href="#">Module Lang</a><ul>
+<li><a class="reference internal" href="#class-lang">Class Lang</a></li>
+</ul>
+</li>
+</ul>
+
+<h4>Previous topic</h4>
+<p class="topless"><a href="index.html"
+	title="previous chapter">Module Process</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="InAndOutputs.html"
+	title="next chapter">Module InAndOutputs</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a href="../../_sources/api/Process/Lang.txt"
+		rel="nofollow">Show Source</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form class="search" action="../../search.html" method="get">
+<input type="text" name="q" size="18" /> <input type="submit"
+	value="Go" /> <input type="hidden" name="check_keywords"
+	value="yes" /> <input type="hidden" name="area" value="default" /></form>
+<p class="searchtip" style="font-size: 90%">Enter search terms
+or a module, class or function name.</p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script></div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+	<li><a href="http://pywps.wald.intevation.org">PyWPS Home</a></li>
+	<li>|</li>
+	<li class="right" style="margin-right: 10px">
+	<a href="../../genindex.html" title="General Index">index</a></li>
+	<li class="right" >
+	<a href="../../py-modindex.html" title="Python Module Index">modules</a> |</li>
+	<li class="right" >
+	<a href="InAndOutputs.html" title="Module InAndOutputs">next</a> |</li>
+	<li class="right" >
+	<a href="index.html" title="Module Process">previous</a> |</li>
+	<li><a href="../../index.html">PyWPS 3.2.0 documentation</a>
+&raquo;</li>
+	<li><a href="../index.html" >PyWPS  API</a>
+&raquo;</li>
+	<li><a href="index.html" >Module Process</a>
+&raquo;</li> 
+</ul>
+</div>
+<div class="footer"> &copy; Copyright 2010, Jachym Cepicky. Created using <a
+	href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.</div>
+</body>
+</html>
