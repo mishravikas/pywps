@@ -2,13 +2,15 @@ from abc import ABCMeta, abstractmethod, abstractproperty
 import logging
 import os
 from pywps._compat import urljoin
-from pywps.exceptions import NotEnoughStorage, NoApplicableCode
+from pywps.exceptions import NotEnoughStorage, NoApplicableCode, StorageAuthenticationError
 from pywps import configuration as config
 
 LOGGER = logging.getLogger(__name__)
 
 class STORE_TYPE:
     PATH = 0
+    FTP = 1
+    DROPBOX = 2
 # TODO: cover with tests
 class StorageAbstract(object):
     """Data storage abstract class
@@ -128,3 +130,89 @@ def get_free_space(folder):
 
     LOGGER.debug('Free space: %s', free_space)
     return free_space
+
+class FTPStorage(StorageAbstract):
+        def __init__(self):
+        """
+        """
+        self.ftp_host = config.get_config_value('remote-storage', 'ftp_host')
+        self.ftp_user = config.get_config_value('remote-storage', 'ftp_user')
+        self.ftp_password = config.get_config_value('remote-storage', 'ftp_password')
+        self.target = config.get_config_value('server', 'outputpath')
+        self.output_url = '%s%s' % (
+            config.get_config_value('server', 'url'),
+            config.get_config_value('server', 'outputurl')
+        )
+
+    def store(self, output):
+        import shutil, tempfile
+
+        file_name = output.file
+
+
+        (prefix, suffix) = os.path.splitext(file_name)
+        if not suffix:
+            suffix = output.output_format.get_extension()
+        (file_dir, file_name) = os.path.split(prefix)
+        output_name = tempfile.mkstemp(suffix=suffix, prefix=file_name,
+                                       dir=self.target)[1]
+
+        full_output_name  = os.path.join(self.target, output_name)
+        # LOGGER.info('Storing file output to %s', full_output_name)
+        shutil.copy2(output.file, full_output_name)
+
+        ftp = ftplib.FTP(self.ftp_host)
+        try:
+            ftp.login(self.ftp_user, self.ftp_password)
+        except:
+            raise StorageAuthenticationError('Invalid FTP credentials')
+        ftp.storlines("STOR " + output.file, open(full_output_name))
+        just_file_name = os.path.basename(output_name)
+
+        url = urljoin(self.ftp_host, just_file_name)
+        LOGGER.info('File Saved in FTP Server: %s', url)
+
+        return (STORE_TYPE.FTP, output_name, url)
+
+class DropBoxStorage(StorageAbstract):
+        def __init__(self):
+        """
+        """
+        self.dropbox_app_key = config.get_config_value('remote-storage', 'dropbox_access_token')
+        self.target = config.get_config_value('server', 'outputpath')
+        self.output_url = '%s%s' % (
+            config.get_config_value('server', 'url'),
+            config.get_config_value('server', 'outputurl')
+        )
+
+    def store(self, output):
+        import shutil, tempfile
+        import dropbox
+
+        file_name = output.file
+
+
+        (prefix, suffix) = os.path.splitext(file_name)
+        if not suffix:
+            suffix = output.output_format.get_extension()
+        (file_dir, file_name) = os.path.split(prefix)
+        output_name = tempfile.mkstemp(suffix=suffix, prefix=file_name,
+                                       dir=self.target)[1]
+
+        full_output_name  = os.path.join(self.target, output_name)
+        # LOGGER.info('Storing file output to %s', full_output_name)
+        shutil.copy2(output.file, full_output_name)
+
+        client = dropbox.client.DropboxClient(self.dropbox_access_token)
+        f = open(full_output_name, 'rb')
+        try:
+            response = client.put_file(file_name, f)
+        except:
+            raise StorageAuthenticationError(' [401]:Invalid OAuth2 token for Dropbox.')
+
+        url = client.share(file_name, short_url=False)
+        just_file_name = os.path.basename(output_name)
+
+        LOGGER.info('File saved in DropBox: %s', url['url'])
+
+        return (STORE_TYPE.DROPBOX, output_name, url['url'])

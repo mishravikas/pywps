@@ -157,3 +157,8 @@ class ServerBusy(NoApplicableCode):
             'name':         escape(self.name),
             'description':  self.get_description(environ)
         })
+
+class StorageAuthenticationError(NoApplicableCode):
+    """Authentication Error with remote storage options
+    """
+    code = 401

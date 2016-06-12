@@ -1,10 +1,11 @@
 from pywps._compat import text_type
 from pywps import E, WPS, OWS, OGCTYPE, NAMESPACES
 from pywps.inout import basic
-from pywps.inout.storage import FileStorage
+from pywps.inout.storage import FileStorage, FTPStorage, DropboxStorage
 from pywps.inout.formats import Format
 from pywps.validator.mode import MODE
 import lxml.etree as etree
+import pywps.configuration as config
 
 
 class BoundingBoxOutput(basic.BBoxInput):
@@ -156,9 +157,16 @@ class ComplexOutput(basic.ComplexOutput):
         """Return Reference node
         """
         doc = WPS.Reference()
+        storage_option = config.get_config_value('remote-storage', 'storage_option')
+
+        if storage_option == 'ftp':
+            self.storage = FTPStorage()
+        elif storage_option == 'dropbox':
+            self.storage = DropboxStorage()
+        else:
+            self.storage = FileStorage()
 
         # get_url will create the file and return the url for it
-        self.storage = FileStorage()
         doc.attrib['{http://www.w3.org/1999/xlink}href'] = self.get_url()
 
         if self.data_format:
