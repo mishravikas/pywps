@@ -11,6 +11,7 @@ class STORE_TYPE:
     PATH = 0
     FTP = 1
     DROPBOX = 2
+    GOOGLEDRIVE = 3
 # TODO: cover with tests
 class StorageAbstract(object):
     """Data storage abstract class
@@ -216,3 +217,54 @@ class DropBoxStorage(StorageAbstract):
         LOGGER.info('File saved in DropBox: %s', url['url'])
 
         return (STORE_TYPE.DROPBOX, output_name, url['url'])
+
+class GoogleDriveStorage(StorageAbstract):
+    def __init__(self):
+        """
+        """
+        self.drive_secret_file = config.get_config_value('remote-storage', 'drive_secret_file')
+        self.target = config.get_config_value('server', 'outputpath')
+        self.output_url = '%s%s' % (
+            config.get_config_value('server', 'url'),
+            config.get_config_value('server', 'outputurl')
+        )
+
+    def store(self, output):
+        import shutil, tempfile, httplib2
+        from oauth2client.service_account import ServiceAccountCredentials
+        from apiclient.discovery import build
+
+        file_name = output.file
+
+
+        (prefix, suffix) = os.path.splitext(file_name)
+        if not suffix:
+            suffix = output.output_format.get_extension()
+        (file_dir, file_name) = os.path.split(prefix)
+        output_name = tempfile.mkstemp(suffix=suffix, prefix=file_name,
+                                       dir=self.target)[1]
+
+        full_output_name  = os.path.join(self.target, output_name)
+        # LOGGER.info('Storing file output to %s', full_output_name)
+        shutil.copy2(output.file, full_output_name)
+        just_file_name = os.path.basename(output_name)
+
+        local_url = urljoin(self.output_url, just_file_name)
+
+        scopes = 'https://www.googleapis.com/auth/drive.file'
+        credentials = ServiceAccountCredentials.from_json_keyfile_name('service-account.json', scopes)
+        http = credentials.authorize(httplib2.Http())
+        drive_service = build('drive', 'v3', http=http)
+        file_metadata = {  'name' : file_name,'mimeType' : 'application/vnd.google-apps.file'}
+        media = MediaFileUpload(local_url,mimetype='text/csv',resumable=True)
+        drive_service = build('drive', 'v3', http=http)
+        uploaded_file = drive_service.files().create(body=file_metadata,media_body=media,fields='id').execute()
+        file_id = uploaded_file.get('id')
+        new_permission = {'type':'anyone','role':'writer','withLink':True}
+        permission = drive_service.permissions().create(fileId=file_id,body=new_permission).execute()
+        download_file = drive_service.files().get(fileId=file_id).execute()
+        url = download_file['webContentLink']
+
+
+
+        return (STORE_TYPE.GOOGLEDRIVE, output_name, url)

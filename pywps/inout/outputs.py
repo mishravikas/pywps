@@ -1,7 +1,7 @@
 from pywps._compat import text_type
 from pywps import E, WPS, OWS, OGCTYPE, NAMESPACES
 from pywps.inout import basic
-from pywps.inout.storage import FileStorage, FTPStorage, DropboxStorage
+from pywps.inout.storage import FileStorage, FTPStorage, DropboxStorage, GoogleDriveStorage
 from pywps.inout.formats import Format
 from pywps.validator.mode import MODE
 import lxml.etree as etree
@@ -163,6 +163,8 @@ class ComplexOutput(basic.ComplexOutput):
             self.storage = FTPStorage()
         elif storage_option == 'dropbox':
             self.storage = DropboxStorage()
+        elif storage_option == 'googledrive':
+            self.storage = GoogleDriveStorage()
         else:
             self.storage = FileStorage()
 
