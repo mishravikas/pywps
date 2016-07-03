@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod, abstractproperty
 import logging
 import os
 from pywps._compat import urljoin
-from pywps.exceptions import NotEnoughStorage, NoApplicableCode, StorageAuthenticationError
+from pywps.exceptions import NotEnoughStorage, NoApplicableCode, StorageAuthenticationError, StorageDependencyError
 from pywps import configuration as config
 
 LOGGER = logging.getLogger(__name__)
@@ -149,6 +149,10 @@ class FTPStorage(StorageAbstract):
         import shutil, tempfile
 
         file_name = output.file
+        try:
+            import ftplib
+        except:
+            raise StorageDependecyError('[400]:Dependecny for FTP Storage not met')
 
 
         (prefix, suffix) = os.path.splitext(file_name)
@@ -188,7 +192,10 @@ class DropBoxStorage(StorageAbstract):
 
     def store(self, output):
         import shutil, tempfile
-        import dropbox
+        try:
+            import dropbox
+        except:
+            raise StorageDependecyError('[400]:Dependecny for Dropbox Storage not met')
 
         file_name = output.file
 
@@ -231,8 +238,11 @@ class GoogleDriveStorage(StorageAbstract):
 
     def store(self, output):
         import shutil, tempfile, httplib2
-        from oauth2client.service_account import ServiceAccountCredentials
-        from apiclient.discovery import build
+        try:
+            from oauth2client.service_account import ServiceAccountCredentials
+            from apiclient.discovery import build
+        except:
+            raise StorageDependecyError('[400]:Dependecny for Google Drive Storage not met')
 
         file_name = output.file
 

@@ -162,3 +162,9 @@ class StorageAuthenticationError(NoApplicableCode):
     """Authentication Error with remote storage options
     """
     code = 401
+    
+class StorageDependencyError(NoApplicableCode):
+    """
+    Dependency Error with remote storage options
+    """
+    code = 400
