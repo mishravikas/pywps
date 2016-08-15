@@ -133,9 +133,7 @@ def get_free_space(folder):
     return free_space
 
 class FTPStorage(StorageAbstract):
-        def __init__(self):
-        """
-        """
+    def __init__(self):
         self.ftp_host = config.get_config_value('remote-storage', 'ftp_host')
         self.ftp_user = config.get_config_value('remote-storage', 'ftp_user')
         self.ftp_password = config.get_config_value('remote-storage', 'ftp_password')
@@ -180,7 +178,7 @@ class FTPStorage(StorageAbstract):
         return (STORE_TYPE.FTP, output_name, url)
 
 class DropBoxStorage(StorageAbstract):
-        def __init__(self):
+    def __init__(self):
         """
         """
         self.dropbox_app_key = config.get_config_value('remote-storage', 'dropbox_access_token')
